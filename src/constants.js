@@ -136,7 +136,14 @@ export const PROJECTS = [
     description:
       "Multi-tenant core platform for flooring marketplace. Enterprise RBAC, real-time notifications, and complex interactive UIs across multiple organizations.",
     metric: "↑ Multi-org workflow platform · 99.5% SLA",
-    image: "", // '/images/cyncly.png'
+    image: "",
+    carouselImages: [
+      "/images/projects/cyncly-1.png",
+      "/images/projects/cyncly-2.png",
+      "/images/projects/cyncly-3.png",
+      "/images/projects/cyncly-4.png",
+      "/images/projects/cyncly-5.png",
+    ],
     tags: ["React", "Next.js", "TypeScript", "Redux"],
     links: [],
   },
@@ -145,7 +152,22 @@ export const PROJECTS = [
     description:
       "AI-powered healthcare litigation platform. Intelligent chronologies and interactive medical record visualization deployed across 50+ legal firms.",
     metric: "↓ Case review time: 40h → 6h (85% reduction)",
-    image: "", // '/images/medicalease.png'
+    image: "",
+    carouselImages: [
+      "/images/projects/medicalease-1.jpg",
+      "/images/projects/medicalease-2.jpg",
+      "/images/projects/medicalease-3.jpg",
+      "/images/projects/medicalease-4.jpg",
+      "/images/projects/medicalease-5.jpg",
+      "/images/projects/medicalease-6.jpg",
+      "/images/projects/medicalease-7.jpg",
+      "/images/projects/medicalease-8.jpg",
+      "/images/projects/medicalease-9.jpg",
+      "/images/projects/medicalease-10.jpg",
+      "/images/projects/medicalease-11.jpg",
+      "/images/projects/medicalease-12.jpg",
+      "/images/projects/medicalease-13.jpg",
+    ],
     tags: ["React 18", "TypeScript", "TanStack Query", "AI/ML"],
     links: [],
   },
@@ -154,7 +176,12 @@ export const PROJECTS = [
     description:
       "Enterprise-grade dashboard template suite. 100+ fully typed components, dynamic theming, RBAC — powering 2,000+ production deployments.",
     metric: "★ 4.8/5.0 · $750K ARR · 2,000+ deployments",
-    image: "", // '/images/admin-templates.png'
+    image: "",
+    carouselImages: [
+      "https://themeselection.com/wp-content/uploads/2024/12/vuexy-nextjs-admin-template-free.jpg",
+      "https://themeselection.com/wp-content/uploads/2024/08/sneat-nextjs-admin-template.jpg",
+      "https://themeselection.com/wp-content/uploads/2024/08/materio-mui-nextjs-admin-template.jpg",
+    ],
     tags: ["React", "TypeScript", "Material-UI", "JWT"],
     links: [
       {
