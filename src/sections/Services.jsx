@@ -1,11 +1,11 @@
 import {
-  Zap, Rocket, Gauge, Wrench, LayoutDashboard,
+  Zap, Rocket, Gauge, Wrench, LayoutDashboard, Sparkles,
   ArrowUpRight,
 } from 'lucide-react'
 import { SERVICES } from '../constants'
 import { useRevealList } from '../lib/useReveal'
 
-const ICON_MAP = { Zap, Rocket, Gauge, Wrench, LayoutDashboard }
+const ICON_MAP = { Zap, Rocket, Gauge, Wrench, LayoutDashboard, Sparkles }
 
 export default function Services() {
   const getRef = useRevealList(SERVICES.length)

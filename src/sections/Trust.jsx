@@ -53,12 +53,6 @@ export default function Trust() {
         </div>
       )}
 
-      {/* Placeholder shown when no testimonials yet */}
-      {TESTIMONIALS.length === 0 && (
-        <div className="border border-dashed border-[rgba(99,157,255,0.15)] rounded-lg p-6 text-center font-mono text-xs text-text-dim">
-          ✦ Add client testimonials in <code className="text-blue-accent">src/constants.js</code> → TESTIMONIALS array
-        </div>
-      )}
     </section>
   )
 }

@@ -24,7 +24,7 @@ export default function Hero() {
           style={{ animationDelay: '0ms' }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-green-DEFAULT animate-[pulseDot_2s_ease_infinite]" />
-          Available for freelance projects
+          Available for contract work · starting now
         </div>
       )}
 
@@ -33,9 +33,9 @@ export default function Hero() {
         className="text-[clamp(52px,7vw,88px)] font-semibold leading-none tracking-[-0.04em] text-text-primary mb-3"
         style={{ animation: 'fadeUp 0.6s 0.1s ease both' }}
       >
-        Freelance{' '}
-        <span className="text-blue-accent">Web</span>
-        <br />Developer.
+        AI Integration{' '}
+        <span className="text-blue-accent">for</span>
+        <br />Web Apps.
       </h1>
 
       {/* Subheading */}
@@ -61,7 +61,7 @@ export default function Hero() {
         style={{ animation: 'fadeUp 0.6s 0.4s ease both' }}
       >
         <a href={`mailto:${PERSONAL.email}`} className="btn-primary">
-          Get your page built
+          Start a project
           <ArrowRight size={16} />
         </a>
         <a href="#projects" className="btn-secondary">

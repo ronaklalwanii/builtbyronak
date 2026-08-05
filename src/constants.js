@@ -6,15 +6,15 @@
 // ── PERSONAL INFO ────────────────────────────────────────────
 export const PERSONAL = {
   name: "Ronak Lalwani",
-  title: "Freelance Web Developer",
-  tagline: "Fast. Clean. Conversion-focused.",
+  title: "AI Integration for Web Apps",
+  tagline: "Ship AI features your users actually trust.",
   email: "hello@builtbyronak.com",
   domain: "builtbyronak.com",
   available: true, // toggles the green "Available" badge
   photo: "", // e.g. '/images/ronak.jpg' — leave empty to show initials
   initials: "RL",
   description:
-    "I'm Ronak — a Senior Frontend Engineer with 7+ years building production apps for healthcare, fintech, and SaaS companies. Now taking on freelance projects: landing pages, web apps, and performance work — delivered fast, at a price that makes sense for your business.",
+    "Senior Frontend Engineer with 7+ years building production apps for healthcare, legal, and SaaS companies. I put AI into web products: streaming chat and copilot interfaces, document analysis workflows, and the dashboards that make model output legible. Most recently a litigation platform running across 2,400+ active cases. Available for contract work now.",
   footerNote: "Built with React 19 · Deployed on Vercel",
 };
 
@@ -28,53 +28,53 @@ export const SOCIAL = {
 // ── STATS (hero pills) ────────────────────────────────────────
 export const STATS = [
   { value: "7+", suffix: "yrs", label: "Experience" },
-  { value: "52", suffix: "%", label: "Avg load time reduction" },
-  { value: "65", suffix: "%", label: "Efficiency gain delivered" },
-  { value: "4.8", suffix: "★", label: "Template rating" },
-  { value: "2–3", suffix: " days", label: "Delivery" },
+  { value: "2,400", suffix: "+", label: "Cases on platforms I built" },
+  { value: "40→6", suffix: "h", label: "Review time cut per case" },
+  { value: "500", suffix: "+", label: "Tenants served" },
+  { value: "50k", suffix: " LOC", label: "Migrated to React + TS" },
 ];
 
 // ── SERVICES ──────────────────────────────────────────────────
 export const SERVICES = [
   {
-    icon: "Zap",
-    name: "Starter Landing Page",
+    icon: "LayoutDashboard",
+    name: "Admin Panel Build",
     description:
-      "A single, focused landing page built to convert visitors into enquiries. Mobile-responsive, contact form connected to your inbox, deployed and live.",
-    price: "From $200",
-    turnaround: "2–3 day turnaround · 1 revision included",
+      "A full admin dashboard in React and TypeScript. User and role management, permissions, data tables, charts, search and filtering, dark mode. Multi-tenant if you need it. I've built these for platforms serving 500+ organisations.",
+    price: "From $2,000",
+    turnaround: "3–5 weeks · scoped upfront",
   },
   {
-    icon: "Rocket",
-    name: "Pro Landing Page",
+    icon: "Sparkles",
+    name: "AI Integration",
     description:
-      "Multi-section marketing page with copy guidance, analytics setup, CMS integration if needed, and 30 days of post-launch support.",
-    price: "From $500",
-    turnaround: "5–7 day turnaround · 2 revisions included",
+      "Wire an LLM into your existing app. Chat and copilot interfaces, streaming responses that render token by token, document analysis, search over your own data. Includes the parts most builds get wrong: citations back to the source, and sensible handling when the model returns something wrong.",
+    price: "From $2,000",
+    turnaround: "2–4 weeks · scoped upfront",
+  },
+  {
+    icon: "Zap",
+    name: "Landing Page",
+    description:
+      "A single focused page built to convert. Mobile responsive, contact form wired to your inbox, deployed and live.",
+    price: "From $200",
+    turnaround: "2–3 days · 1 revision included",
   },
   {
     icon: "Gauge",
     name: "Performance Audit & Fix",
     description:
-      "Full Lighthouse audit + hands-on fixes. Core Web Vitals, load speed, mobile performance. I've taken scores from 68 → 92 and cut load times by 52%.",
+      "Full Lighthouse audit plus hands-on fixes. Core Web Vitals, load speed, mobile performance. A good first project if you want to see how I work before committing to something larger.",
     price: "From $300",
-    turnaround: "3–5 day turnaround · full report included",
+    turnaround: "3–5 days · full report included",
   },
   {
     icon: "Wrench",
-    name: "Monthly Maintenance",
+    name: "Monthly Retainer",
     description:
-      "Ongoing updates, bug fixes, content changes, and peace of mind. No more chasing developers every time something breaks.",
-    price: "From $200/mo",
+      "Ongoing frontend capacity for teams shipping continuously. Bug fixes, new features, and changes without hiring. Hours agreed upfront so scope stays clear on both sides.",
+    price: "From $500/mo",
     turnaround: "Rolling monthly · cancel anytime",
-  },
-  {
-    icon: "LayoutDashboard",
-    name: "React Admin Template",
-    description:
-      "Custom React + TypeScript admin dashboards built from scratch — or extend an existing template. RBAC, data tables, charts, dark mode, fully typed components. I've shipped templates used in 2,000+ production deployments with a 4.8★ rating.",
-    price: "Let's talk pricing",
-    turnaround: "Scope-dependent · custom quote via email",
   },
 ];
 
@@ -88,7 +88,7 @@ export const WORK = [
     bullets: [
       "Architected production-grade Admin Panel for marketing teams using React, TypeScript & MUI",
       "Built Cyncly Homebase — multi-tenant platform with RBAC, real-time notifications & complex interactive UIs",
-      "Developed MedicalEase: reduced case review time from 40h → 6h (65% efficiency gain)",
+      "Developed MedicalEase: cut case review time from roughly 40h → 6h per case",
       "Mentored 2 junior devs; established guild standards that improved onboarding speed by 25%",
     ],
     tags: [
@@ -135,7 +135,7 @@ export const PROJECTS = [
     name: "Cyncly Homebase",
     description:
       "Multi-tenant core platform for flooring marketplace. Enterprise RBAC, real-time notifications, and complex interactive UIs across multiple organizations.",
-    metric: "↑ Multi-org workflow platform · 99.5% SLA",
+    metric: "↑ 500+ retailers · granular RBAC · zero access-control incidents",
     image: "",
     carouselImages: [
       "/images/projects/cyncly-1.png",
@@ -150,8 +150,8 @@ export const PROJECTS = [
   {
     name: "MedicalEase",
     description:
-      "AI-powered healthcare litigation platform. Intelligent chronologies and interactive medical record visualization deployed across 50+ legal firms.",
-    metric: "↓ Case review time: 40h → 6h (85% reduction)",
+      "AI-powered healthcare litigation platform. AI-generated chronologies, streaming document summaries, and an in-app PDF viewer with annotation panels, running across 2,400+ active cases.",
+    metric: "↓ Case review time: roughly 40h → 6h per case",
     image: "",
     carouselImages: [
       "/images/projects/Dashboard.jpg",
@@ -169,6 +169,16 @@ export const PROJECTS = [
       "/images/projects/Medical-Chronology.jpg",
     ],
     tags: ["React 18", "TypeScript", "TanStack Query", "AI/ML"],
+    links: [],
+  },
+  {
+    name: "Laine",
+    description:
+      "AI marketing platform. Admin panel for enterprise marketing teams, with multimodal AI capabilities and real-time campaign analytics. Built with React, TypeScript, Redux and MUI.",
+    metric: "↑ Admin panel + AI campaign management at scale",
+    image: "",
+    carouselImages: [],
+    tags: ["React", "TypeScript", "Redux", "AI/ML"],
     links: [],
   },
   {
@@ -212,21 +222,25 @@ export const PROJECTS = [
 
 // ── METRICS (trust section) ────────────────────────────────────
 export const METRICS = [
-  { value: "92", label: "Lighthouse score achieved", sub: "up from 68" },
   {
-    value: "65%",
-    label: "Efficiency gain for MedicalEase",
-    sub: "40h → 6h per case",
+    value: "2,400+",
+    label: "Active cases on the AI platform I built",
+    sub: "MedicalEase, legal-medical litigation",
   },
   {
-    value: "4.8★",
-    label: "Template rating on marketplace",
-    sub: "300+ reviews",
+    value: "40→6h",
+    label: "Case review time, per case",
+    sub: "via AI chronologies + document summaries",
   },
   {
-    value: "$750K",
-    label: "ARR from templates built",
-    sub: "2,000+ deployments",
+    value: "500+",
+    label: "Tenants on the platform I architected",
+    sub: "Cyncly Homebase, zero access-control incidents",
+  },
+  {
+    value: "50k",
+    label: "Lines migrated to React + TypeScript",
+    sub: "4 HIPAA portals, zero downtime",
   },
 ];
 

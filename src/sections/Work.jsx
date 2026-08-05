@@ -36,7 +36,7 @@ export default function Work() {
                     <ArrowRight size={14} className="text-blue-accent flex-shrink-0 mt-0.5" />
                     <span dangerouslySetInnerHTML={{
                       __html: b.replace(/\*\*(.*?)\*\*/g, '<strong class="text-text-primary font-medium">$1</strong>')
-                           .replace(/(65% efficiency gain|zero downtime|\$750K ARR|4\.8\/5\.0)/g,
+                           .replace(/(40h → 6h per case|zero downtime|\$750K ARR|4\.8\/5\.0)/g,
                              '<strong class="text-text-primary font-medium">$1</strong>')
                     }} />
                   </li>
