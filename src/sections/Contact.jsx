@@ -1,80 +1,75 @@
-import { Mail, Linkedin, Github, Twitter } from "lucide-react";
-import { PERSONAL, SOCIAL } from "../constants";
-import { useReveal } from "../lib/useReveal";
+import { Mail, Linkedin, Twitter, ArrowUpRight } from 'lucide-react'
+import { PERSONAL, SOCIAL } from '../constants'
+
+const SOCIALS = [
+  { key: 'linkedin', label: 'LinkedIn', Icon: Linkedin },
+  { key: 'twitter', label: 'Twitter', Icon: Twitter },
+]
 
 export default function Contact() {
-  const ref = useReveal();
-
   return (
-    <section
-      id="contact"
-      className="px-12 py-24 border-t border-[rgba(99,157,255,0.08)] bg-bg-secondary text-center"
-    >
-      <div className="max-w-xl mx-auto">
-        <div className="section-label justify-center">Get in touch</div>
+    <section id="contact" className="rule">
+      <div className="shell py-16 lg:py-20">
+        <p className="eyebrow pb-10">Get in touch</p>
 
-        <h2
-          className="text-[clamp(40px,5vw,68px)] font-semibold tracking-tight leading-tight mb-6"
-          style={{ animation: "fadeUp 0.6s ease both" }}
-        >
-          Let&apos;s build
-          <br />
-          something <span className="text-blue-accent">great.</span>
-        </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] gap-x-14 gap-y-10 items-start">
+          <div className="flex flex-col gap-5">
+            <h2 className="text-title font-semibold text-ink text-balance max-w-[18ch]">
+              Got an AI feature that needs a real interface?
+            </h2>
 
-        <p className="text-base text-text-secondary leading-[1.75] mb-10">
-          Got a project in mind? Landing page, web app, or performance fix — I
-          deliver fast, clean work at a price that works for small businesses.
-          First draft in 24 hours.
-        </p>
+            <p className="text-[14.5px] leading-relaxed text-ink-soft max-w-prose">
+              Or an admin panel you&apos;d rather not build in-house. Tell me what
+              you&apos;re shipping and by when, and I&apos;ll come back with scope, price,
+              and a start date. Usually the same day.
+            </p>
 
-        <div ref={ref} className="reveal">
-          <a
-            href={`mailto:${PERSONAL.email}`}
-            className="inline-flex items-center gap-3 font-mono text-sm text-blue-accent border border-blue-border bg-blue-dim px-7 py-3.5 rounded transition-all duration-200 hover:bg-[rgba(61,142,240,0.18)]"
-          >
-            <Mail size={15} />
-            {PERSONAL.email}
-          </a>
-          <p className="font-mono text-xs text-text-dim mt-3">
-            Replies within 12 hours
-          </p>
-        </div>
-
-        {/* Social links */}
-        <div className="flex justify-center gap-8 mt-12 pt-10 border-t border-[rgba(99,157,255,0.08)]">
-          {SOCIAL.linkedin && (
             <a
-              href={SOCIAL.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 font-mono text-xs text-text-secondary hover:text-text-primary transition-colors"
+              href={`mailto:${PERSONAL.email}`}
+              className="group inline-flex items-center gap-2.5 w-fit border border-hair-strong rounded-lg px-5 py-3 font-mono text-[13px] text-ink hover:border-accent hover:text-accent transition-colors"
             >
-              <Linkedin size={14} /> LinkedIn
+              <Mail size={14} />
+              {PERSONAL.email}
+              <ArrowUpRight
+                size={14}
+                className="text-ink-faint group-hover:text-accent transition-colors"
+              />
             </a>
-          )}
-          {SOCIAL.github && (
-            <a
-              href={SOCIAL.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 font-mono text-xs text-text-secondary hover:text-text-primary transition-colors"
-            >
-              <Github size={14} /> GitHub
-            </a>
-          )}
-          {SOCIAL.twitter && (
-            <a
-              href={SOCIAL.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 font-mono text-xs text-text-secondary hover:text-text-primary transition-colors"
-            >
-              <Twitter size={14} /> Twitter
-            </a>
-          )}
+          </div>
+
+          <dl className="flex flex-col divide-y divide-hair border-y border-hair">
+            <div className="flex items-baseline justify-between gap-4 py-3.5">
+              <dt className="meta">Availability</dt>
+              <dd className="text-[13.5px] text-live">Open, starting now</dd>
+            </div>
+            <div className="flex items-baseline justify-between gap-4 py-3.5">
+              <dt className="meta">Based in</dt>
+              <dd className="text-[13.5px] text-ink-soft">Ahmedabad, India</dd>
+            </div>
+            <div className="flex items-baseline justify-between gap-4 py-3.5">
+              <dt className="meta">Overlap</dt>
+              <dd className="text-[13.5px] text-ink-soft">US mornings, UK afternoons</dd>
+            </div>
+            <div className="flex items-baseline justify-between gap-4 py-3.5">
+              <dt className="meta">Elsewhere</dt>
+              <dd className="flex items-center gap-4">
+                {SOCIALS.filter(({ key }) => SOCIAL[key]).map(({ key, label, Icon }) => (
+                  <a
+                    key={key}
+                    href={SOCIAL[key]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 font-mono text-[11px] tracking-[0.06em] uppercase text-ink-soft hover:text-ink transition-colors"
+                  >
+                    <Icon size={12} />
+                    {label}
+                  </a>
+                ))}
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,81 +1,82 @@
-import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { PERSONAL, NAV_LINKS } from '../constants'
-import { cn } from '../lib/utils'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
-    <nav className={cn(
-      'fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-12 py-5 transition-all duration-300',
-      scrolled
-        ? 'border-b border-[rgba(99,157,255,0.1)] bg-[rgba(8,12,18,0.88)] backdrop-blur-xl'
-        : 'bg-transparent'
-    )}>
-      {/* Logo */}
-      <a href="#" className="font-semibold tracking-tight text-text-primary text-[15px]">
-        {PERSONAL.name}
-      </a>
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-200 ${
+        scrolled ? 'bg-canvas/85 backdrop-blur-md border-b border-hair' : 'border-b border-transparent'
+      }`}
+    >
+      <div className="shell flex items-center justify-between gap-6 h-[68px]">
+        <a href="#hero" className="flex flex-col leading-none gap-1">
+          <span className="text-[13px] font-semibold tracking-[0.06em] uppercase text-ink">
+            {PERSONAL.name}
+          </span>
+          <span className="font-mono text-[9.5px] tracking-[0.14em] uppercase text-ink-dim">
+            Senior Frontend Engineer
+          </span>
+        </a>
 
-      {/* Desktop links */}
-      <ul className="hidden md:flex gap-8 list-none">
-        {NAV_LINKS.map(link => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              className="text-xs text-text-secondary tracking-[0.05em] uppercase hover:text-text-primary transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      {/* CTA */}
-      <a
-        href={`mailto:${PERSONAL.email}`}
-        className="hidden md:inline-flex items-center text-xs font-medium px-4 py-2 border border-blue-accent text-blue-accent rounded transition-all duration-200 hover:bg-blue-accent hover:text-white tracking-wide"
-      >
-        Hire me
-      </a>
-
-      {/* Mobile toggle */}
-      <button
-        className="md:hidden text-text-secondary hover:text-text-primary"
-        onClick={() => setMenuOpen(o => !o)}
-      >
-        {menuOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-bg-secondary border-b border-[rgba(99,157,255,0.1)] flex flex-col p-6 gap-5 md:hidden">
-          {NAV_LINKS.map(link => (
+        <nav className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-              onClick={() => setMenuOpen(false)}
+              className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-ink-soft hover:text-ink transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <a
-            href={`mailto:${PERSONAL.email}`}
-            className="text-sm font-medium text-blue-accent"
+        </nav>
+
+        <div className="flex items-center gap-4">
+          {PERSONAL.available && (
+            <span className="hidden sm:flex items-center gap-2 font-mono text-[10.5px] tracking-[0.14em] uppercase text-live">
+              <span className="w-1.5 h-1.5 rounded-full bg-live animate-pulse-dot" />
+              Available now
+            </span>
+          )}
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label="Toggle navigation"
+            className="md:hidden flex flex-col gap-[5px] p-1"
           >
-            {PERSONAL.email}
-          </a>
+            <span className="block w-5 h-px bg-ink-soft" />
+            <span className="block w-5 h-px bg-ink-soft" />
+          </button>
         </div>
+      </div>
+
+      {open && (
+        <nav className="md:hidden border-t border-hair bg-canvas">
+          <div className="shell py-4 flex flex-col gap-4">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-soft"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </nav>
       )}
-    </nav>
+    </header>
   )
 }

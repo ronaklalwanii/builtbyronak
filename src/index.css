@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Design system: "Contact Sheet"
+   Hairline rules, tiny mono labels, no card chrome, tight rhythm.
+   The screenshots are the content; everything else gets out of
+   the way.
+   ============================================================ */
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -14,57 +21,65 @@
   }
 
   body {
-    background-color: #080c12;
-    color: #e2eaf6;
+    background-color: #0a0c10;
+    color: #e6e9ef;
     font-family: 'Geist', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  /* Grain overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.35;
+  ::selection {
+    background: rgba(74, 140, 247, 0.3);
+  }
+
+  :focus-visible {
+    outline: 2px solid #4a8cf7;
+    outline-offset: 3px;
   }
 }
 
 @layer components {
-  .section-label {
-    @apply flex items-center gap-3 font-mono text-xs tracking-[0.15em] uppercase text-blue-accent mb-4;
+  /* Page gutter. One value, used everywhere, so columns line up. */
+  .shell {
+    @apply w-full max-w-[1240px] mx-auto px-6 md:px-10;
   }
 
-  .section-label::after {
-    content: '';
-    @apply block h-px w-10 bg-blue-accent opacity-40;
+  /* Section separator is a hairline, not whitespace. */
+  .rule {
+    @apply border-t border-hair;
   }
 
-  .section-title {
-    @apply text-4xl font-semibold tracking-tight text-text-primary mb-16;
+  /* Tiny uppercase mono label. The only section heading this design uses. */
+  .eyebrow {
+    @apply font-mono text-[10.5px] tracking-[0.16em] uppercase text-ink-dim;
   }
 
-  .tag {
-    @apply font-mono text-xs text-text-secondary bg-bg-tertiary border border-[rgba(99,157,255,0.1)] px-2.5 py-1 rounded-sm;
+  .eyebrow-accent {
+    @apply font-mono text-[10.5px] tracking-[0.16em] uppercase text-accent;
   }
 
-  .btn-primary {
-    @apply inline-flex items-center gap-2 bg-blue-accent text-white text-sm font-medium px-7 py-3.5 rounded transition-all duration-200 hover:opacity-85 hover:-translate-y-px;
+  /* Inline metadata, dot separated: AI SUMMARIES · CHRONOLOGIES */
+  .meta {
+    @apply font-mono text-[10.5px] tracking-[0.12em] uppercase text-ink-dim;
   }
 
-  .btn-secondary {
-    @apply inline-flex items-center gap-2 text-text-secondary text-sm border-b border-text-dim pb-0.5 transition-all duration-200 hover:text-text-primary hover:border-text-secondary;
+  .link-accent {
+    @apply inline-flex items-center gap-1.5 text-accent text-sm transition-colors hover:text-accent-bright;
+  }
+
+  /* Screenshot frame. Subtle, so the UI inside reads as the subject. */
+  .shot {
+    @apply relative overflow-hidden rounded-xl border border-hair bg-surface;
   }
 }
 
 @layer utilities {
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(14px);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
@@ -72,4 +87,36 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Lightbox chrome, tuned to the palette */
+.yarl__container {
+  background-color: rgba(6, 8, 11, 0.96) !important;
+}
+
+.yarl__slide_captions_container {
+  background: transparent !important;
 }

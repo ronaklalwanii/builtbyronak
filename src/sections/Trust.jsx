@@ -1,58 +1,33 @@
-import { METRICS, TESTIMONIALS } from '../constants'
-import { useReveal, useRevealList } from '../lib/useReveal'
+import { TESTIMONIALS } from '../constants'
+import { useRevealList } from '../lib/useReveal'
 
+// Metrics live in the hero now. This section only appears once there are
+// real testimonials to show. No empty state, no placeholder.
 export default function Trust() {
-  const metricsRef = useReveal()
   const getRef = useRevealList(TESTIMONIALS.length)
+
+  if (TESTIMONIALS.length === 0) return null
 
   return (
     <section id="trust" className="px-12 py-24 border-t border-[rgba(99,157,255,0.08)]">
-      <div className="section-label">Social proof</div>
+      <div className="section-label">Client feedback</div>
       <h2 className="section-title">
-        Numbers that <span className="text-blue-accent">matter</span>
+        What people <span className="text-blue-accent">say</span>
       </h2>
 
-      {/* Metrics grid */}
-      <div
-        ref={metricsRef}
-        className="reveal grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
-      >
-        {METRICS.map((m, i) => (
-          <div
-            key={i}
-            className="bg-bg-secondary border border-[rgba(99,157,255,0.08)] rounded-lg p-6"
-          >
-            <div className="font-mono text-3xl font-semibold text-blue-accent mb-1 tracking-tight">
-              {m.value}
-            </div>
-            <div className="text-sm text-text-secondary mb-1">{m.label}</div>
-            <div className="text-xs text-text-dim">{m.sub}</div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-[rgba(99,157,255,0.08)] border border-[rgba(99,157,255,0.08)] rounded-lg overflow-hidden">
+        {TESTIMONIALS.map((item, i) => (
+          <figure key={item.name} ref={getRef(i)} className="reveal bg-bg-primary p-6 flex flex-col gap-4">
+            <blockquote className="text-sm text-text-primary leading-relaxed">
+              &ldquo;{item.quote}&rdquo;
+            </blockquote>
+            <figcaption className="font-mono text-xs text-text-secondary mt-auto">
+              {item.name}
+              {item.role && <span className="text-text-dim"> · {item.role}</span>}
+            </figcaption>
+          </figure>
         ))}
       </div>
-
-      {/* Testimonials — only shown if array has entries */}
-      {TESTIMONIALS.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t, i) => (
-            <div
-              key={i}
-              ref={getRef(i)}
-              className="reveal bg-bg-secondary border border-[rgba(99,157,255,0.08)] rounded-lg p-7"
-            >
-              <p className="text-base text-text-primary leading-relaxed mb-5">
-                <span className="text-blue-accent text-2xl leading-none align-[-6px] mr-1">&ldquo;</span>
-                {t.quote}
-              </p>
-              <div>
-                <strong className="block text-sm font-medium text-text-primary">{t.name}</strong>
-                <span className="text-xs text-text-secondary">{t.role}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
     </section>
   )
 }

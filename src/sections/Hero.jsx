@@ -1,93 +1,56 @@
-import { ArrowRight, ChevronRight } from 'lucide-react'
-import { PERSONAL, STATS } from '../constants'
+import { ArrowRight } from 'lucide-react'
+import { HERO_STATS } from '../constants'
 
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex flex-col justify-center px-12 pt-28 pb-20 overflow-hidden"
-      style={{
-        backgroundImage: 'radial-gradient(rgba(99,157,255,0.07) 1px, transparent 1px)',
-        backgroundSize: '32px 32px',
-      }}
-    >
-      {/* Glow */}
-      <div
-        className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(61,142,240,0.07) 0%, transparent 70%)' }}
-      />
+    <section id="hero" className="pt-[68px]">
+      <div className="shell grid grid-cols-1 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] gap-x-14 gap-y-10 items-center py-16 lg:py-20">
+        {/* -- Copy --------------------------------- */}
+        <div className="flex flex-col gap-6">
+          <p className="eyebrow-accent">AI integration for web products</p>
 
-      {/* Available badge */}
-      {PERSONAL.available && (
-        <div
-          className="inline-flex items-center gap-2 text-xs font-mono text-green-DEFAULT bg-green-dim border border-[rgba(62,207,142,0.2)] px-4 py-1.5 rounded-full mb-10 w-fit"
-          style={{ animationDelay: '0ms' }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-green-DEFAULT animate-[pulseDot_2s_ease_infinite]" />
-          Available for contract work · starting now
+          <h1 className="text-display font-semibold text-ink text-balance">
+            Ship AI features.
+            <br />
+            Ship reliable UI.
+          </h1>
+
+          <p className="text-lede text-ink-soft max-w-measure">
+            I help startups and agencies build production web apps with AI that users
+            actually trust.
+          </p>
+
+          <dl className="flex items-stretch gap-6 pt-2">
+            {HERO_STATS.map((stat, i) => (
+              <div
+                key={stat.label}
+                className={`flex flex-col gap-1 ${i > 0 ? 'pl-6 border-l border-hair' : ''}`}
+              >
+                <dt className="text-stat font-semibold text-ink tabular-nums">{stat.value}</dt>
+                <dd className="text-[12.5px] text-ink-dim">{stat.label}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <a href="#contact" className="group eyebrow-accent inline-flex items-center gap-2 w-fit pt-2">
+            Open for contract work
+            <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
+          </a>
         </div>
-      )}
 
-      {/* Heading */}
-      <h1
-        className="text-[clamp(52px,7vw,88px)] font-semibold leading-none tracking-[-0.04em] text-text-primary mb-3"
-        style={{ animation: 'fadeUp 0.6s 0.1s ease both' }}
-      >
-        AI Integration{' '}
-        <span className="text-blue-accent">for</span>
-        <br />Web Apps.
-      </h1>
-
-      {/* Subheading */}
-      <p
-        className="text-[clamp(20px,2.5vw,32px)] font-light tracking-tight text-text-secondary mb-10"
-        style={{ animation: 'fadeUp 0.6s 0.2s ease both' }}
-      >
-        {PERSONAL.tagline}
-      </p>
-
-      {/* Description */}
-      <p
-        className="max-w-xl text-base text-text-secondary leading-[1.75] mb-12"
-        style={{ animation: 'fadeUp 0.6s 0.3s ease both' }}
-      >
-        I&apos;m <span className="text-text-primary font-medium">{PERSONAL.name}</span> —{' '}
-        {PERSONAL.description}
-      </p>
-
-      {/* CTAs */}
-      <div
-        className="flex gap-4 items-center flex-wrap"
-        style={{ animation: 'fadeUp 0.6s 0.4s ease both' }}
-      >
-        <a href={`mailto:${PERSONAL.email}`} className="btn-primary">
-          Start a project
-          <ArrowRight size={16} />
-        </a>
-        <a href="#projects" className="btn-secondary">
-          See my work
-          <ChevronRight size={14} />
-        </a>
-      </div>
-
-      {/* Stats pills */}
-      <div
-        className="flex gap-2.5 flex-wrap mt-16"
-        style={{ animation: 'fadeUp 0.6s 0.5s ease both' }}
-      >
-        {STATS.map((stat, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-2.5 bg-bg-secondary border border-[rgba(99,157,255,0.1)] rounded-full px-4 py-2.5 hover:border-[rgba(99,157,255,0.22)] transition-colors duration-200"
-          >
-            <span className="font-mono text-[15px] font-semibold text-text-primary tracking-tight">
-              {stat.value}
-              <span className="text-blue-accent">{stat.suffix}</span>
-            </span>
-            <span className="w-px h-3.5 bg-[rgba(99,157,255,0.15)]" />
-            <span className="text-xs text-text-secondary">{stat.label}</span>
-          </div>
-        ))}
+        {/* -- Product shot ------------------------- */}
+        <div className="shot">
+          <img
+            src="/images/projects/Chronology-Timeline.jpg"
+            alt="Medical chronology timeline with AI-generated summaries and linked source documents"
+            width="1920"
+            height="1080"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="block w-full h-auto"
+          />
+        </div>
       </div>
     </section>
   )

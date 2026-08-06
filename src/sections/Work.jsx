@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react'
 import { WORK } from '../constants'
 import { useRevealList } from '../lib/useReveal'
 
@@ -6,51 +5,42 @@ export default function Work() {
   const getRef = useRevealList(WORK.length)
 
   return (
-    <section id="work" className="px-12 py-24 border-t border-[rgba(99,157,255,0.08)]">
-      <div className="section-label">Experience</div>
-      <h2 className="section-title">
-        Where I&apos;ve <span className="text-blue-accent">worked</span>
-      </h2>
+    <section id="work" className="rule">
+      <div className="shell py-16 lg:py-20">
+        <p className="eyebrow pb-10">Experience</p>
 
-      <div className="flex flex-col">
-        {WORK.map((job, i) => (
-          <div
-            key={i}
-            ref={getRef(i)}
-            className="reveal grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-12 py-10 border-t border-[rgba(99,157,255,0.08)] first:border-t last:border-b"
-          >
-            {/* Meta */}
-            <div className="pt-1">
-              <div className="font-mono text-xs text-text-secondary mb-2">{job.period}</div>
-              <div className="text-xs text-text-dim">{job.company}</div>
-            </div>
+        <div className="border-t border-hair">
+          {WORK.map((job, i) => (
+            <div
+              key={job.company}
+              ref={getRef(i)}
+              className="reveal grid grid-cols-1 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)] gap-x-14 gap-y-4 py-10 border-b border-hair"
+            >
+              <div className="flex flex-col gap-1.5">
+                <h3 className="text-[15px] font-medium text-ink">{job.title}</h3>
+                <p className="text-[13.5px] text-ink-soft">{job.company}</p>
+                <p className="font-mono text-[11px] text-ink-dim tabular-nums">{job.period}</p>
+              </div>
 
-            {/* Content */}
-            <div>
-              <h3 className="text-lg font-medium text-text-primary mb-3">{job.title}</h3>
-              <p className="text-sm text-text-secondary leading-relaxed mb-5">{job.body}</p>
+              <div className="flex flex-col gap-4">
+                <p className="text-[14.5px] leading-relaxed text-ink-soft max-w-prose">{job.body}</p>
 
-              <ul className="flex flex-col gap-2.5 mb-6">
-                {job.bullets.map((b, j) => (
-                  <li key={j} className="flex gap-3 text-sm text-text-secondary leading-relaxed">
-                    <ArrowRight size={14} className="text-blue-accent flex-shrink-0 mt-0.5" />
-                    <span dangerouslySetInnerHTML={{
-                      __html: b.replace(/\*\*(.*?)\*\*/g, '<strong class="text-text-primary font-medium">$1</strong>')
-                           .replace(/(40h → 6h per case|zero downtime|\$750K ARR|4\.8\/5\.0)/g,
-                             '<strong class="text-text-primary font-medium">$1</strong>')
-                    }} />
-                  </li>
-                ))}
-              </ul>
+                <ul className="flex flex-col gap-2">
+                  {job.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      className="relative pl-4 text-[14px] leading-relaxed text-ink-soft max-w-prose before:absolute before:left-0 before:top-[0.7em] before:w-1.5 before:h-px before:bg-ink-faint"
+                    >
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
 
-              <div className="flex flex-wrap gap-1.5">
-                {job.tags.map(tag => (
-                  <span key={tag} className="tag">{tag}</span>
-                ))}
+                <p className="meta pt-1">{job.tags.join(' · ')}</p>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )

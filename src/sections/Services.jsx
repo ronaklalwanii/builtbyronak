@@ -1,46 +1,56 @@
-import {
-  Zap, Rocket, Gauge, Wrench, LayoutDashboard, Sparkles,
-  ArrowUpRight,
-} from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { SERVICES } from '../constants'
 import { useRevealList } from '../lib/useReveal'
 
-const ICON_MAP = { Zap, Rocket, Gauge, Wrench, LayoutDashboard, Sparkles }
+// Short forms for the row layout. The long copy lives in the proposal,
+// not on the page, because five cards side by side have to stay scannable.
+const BLURB = {
+  'Admin Panel Build': 'Scalable admin panels with modern stack.',
+  'AI Integration': 'Integrate AI into your existing products.',
+  'Landing Page': 'High-converting, responsive pages.',
+  'Performance Audit & Fix': 'Detailed audit with actionable fixes.',
+  'Monthly Retainer': 'Ongoing development and support.',
+}
 
 export default function Services() {
   const getRef = useRevealList(SERVICES.length)
 
   return (
-    <section id="services" className="px-12 py-24 border-t border-[rgba(99,157,255,0.08)]">
-      <div className="section-label">What I offer</div>
-      <h2 className="section-title">
-        Services &amp; <span className="text-blue-accent">Pricing</span>
-      </h2>
+    <section id="services" className="rule">
+      <div className="shell py-16 lg:py-20">
+        <div className="flex items-baseline justify-between gap-6 pb-10">
+          <p className="eyebrow">Services &amp; pricing</p>
+          <p className="meta">All prices in USD</p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-[rgba(99,157,255,0.08)] border border-[rgba(99,157,255,0.08)] rounded-lg overflow-hidden">
-        {SERVICES.map((svc, i) => {
-          const Icon = ICON_MAP[svc.icon] ?? Zap
-          return (
-            <div
-              key={i}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px bg-hair border border-hair rounded-xl overflow-hidden">
+          {SERVICES.map((service, i) => (
+            <a
+              key={service.name}
+              href="#contact"
               ref={getRef(i)}
-              className="reveal group relative bg-bg-secondary hover:bg-bg-tertiary p-10 flex flex-col transition-colors duration-200 overflow-hidden"
+              className="reveal group bg-canvas hover:bg-surface transition-colors p-6 flex flex-col gap-3 min-h-[190px]"
             >
-              {/* Top accent line */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-blue-accent scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+              <h3 className="text-[14px] font-medium text-ink">{service.name}</h3>
 
-              <Icon size={22} className="text-blue-accent mb-5" strokeWidth={1.5} />
+              <p className="text-price font-semibold text-ink tabular-nums">
+                {service.price.replace('From ', '')}
+              </p>
 
-              <h3 className="text-base font-medium text-text-primary mb-2">{svc.name}</h3>
-              <p className="text-sm text-text-secondary leading-relaxed mb-5 flex-1">{svc.description}</p>
+              <p className="text-[13px] leading-relaxed text-ink-dim">
+                {BLURB[service.name] ?? service.description}
+              </p>
 
-              <div>
-                <div className="font-mono text-sm text-blue-accent">{svc.price}</div>
-                <div className="font-mono text-xs text-text-dim mt-1">{svc.turnaround}</div>
-              </div>
-            </div>
-          )
-        })}
+              <span className="mt-auto self-end text-ink-faint group-hover:text-accent transition-colors">
+                <ArrowUpRight size={15} />
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <p className="meta pt-5">
+          Every engagement is scoped and priced in writing before work starts.
+        </p>
       </div>
     </section>
   )
