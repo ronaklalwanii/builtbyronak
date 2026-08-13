@@ -152,18 +152,6 @@
   .text-balance {
     text-wrap: balance;
   }
-
-  /* Logo-wall normaliser: flattens any source logo (white SVG, colour
-     PNG) to a single monochrome treatment so the strip reads as one row. */
-  .logo-mark {
-    filter: brightness(0) invert(1);
-    opacity: 0.62;
-    transition: opacity 0.2s ease;
-  }
-
-  .logo-mark:hover {
-    opacity: 1;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

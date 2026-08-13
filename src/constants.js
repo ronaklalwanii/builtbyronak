@@ -265,16 +265,6 @@ export const PROOF_STATS = [
   { value: "50k", label: "Lines migrated" },
 ];
 
-// -- LOGOS -----------------------------------------------------
-//  Companies whose products I built. York IE is where I worked;
-//  Cyncly was its client. Framed as "products I've built for" so
-//  the relationship is not overstated.
-//  Sources: york.ie and cyncly.com own brand assets.
-export const LOGOS = [
-  { name: "York IE", src: "/logos/york-ie.svg", width: 92 },
-  { name: "Cyncly", src: "/logos/cyncly.png", width: 96 },
-];
-
 // -- MARKETPLACE PROOF -----------------------------------------
 //  Public, third-party verifiable. The template products are linked
 //  from the React Admin Templates project below.
