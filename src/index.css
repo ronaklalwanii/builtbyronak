@@ -9,6 +9,24 @@
    the way.
    ============================================================ */
 
+/* Self-hosted so the critical path carries no third-party request.
+   Variable fonts: one file each, 100-900 available. */
+@font-face {
+  font-family: 'Geist';
+  src: url('./fonts/Geist-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('./fonts/GeistMono-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -18,6 +36,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* Anchor targets clear the 68px fixed header. */
+    scroll-padding-top: 84px;
   }
 
   body {
@@ -52,7 +72,22 @@
     @apply border-t border-hair;
   }
 
-  /* Tiny uppercase mono label. The only section heading this design uses. */
+  /* Section vertical rhythm. VISUAL_DENSITY 5: looser than it was,
+     still tighter than a marketing page. */
+  .section-pad {
+    @apply py-20 lg:py-28;
+  }
+
+  /* Real <h2>. Sentence case, understated, sized so the document
+     outline is honest without shouting. This is the default section
+     heading; .eyebrow is the rationed exception. */
+  .section-h {
+    @apply text-[19px] font-medium text-ink tracking-[-0.01em];
+  }
+
+  /* Tiny uppercase mono label. AI-tell signature, so it is rationed:
+     max 2 per page, currently used once (Hero). Everything else uses
+     .section-h. Do not add a third without removing one. */
   .eyebrow {
     @apply font-mono text-[10.5px] tracking-[0.16em] uppercase text-ink-dim;
   }
@@ -61,18 +96,44 @@
     @apply font-mono text-[10.5px] tracking-[0.16em] uppercase text-accent;
   }
 
-  /* Inline metadata, dot separated: AI SUMMARIES · CHRONOLOGIES */
+  /* Inline metadata. Not a section header, so it is outside the
+     eyebrow budget. */
   .meta {
-    @apply font-mono text-[10.5px] tracking-[0.12em] uppercase text-ink-dim;
+    @apply font-mono text-[11px] tracking-[0.1em] uppercase text-ink-dim;
+  }
+
+  /* Tag chips. Replaces the old `·`-joined string, which put up to
+     seven separators on one line. */
+  .tag {
+    @apply font-mono text-[10.5px] tracking-[0.08em] uppercase text-ink-dim
+           border border-hair rounded-sm px-2 py-1 leading-none;
   }
 
   .link-accent {
     @apply inline-flex items-center gap-1.5 text-accent text-sm transition-colors hover:text-accent-bright;
   }
 
+  /* Primary CTA. Solid accent, so it reads as the one button on the
+     page that matters. #06121f on #4a8cf7 measures 5.7:1 (8.2:1 on hover). */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-3
+           text-[14px] font-medium text-[#06121f]
+           transition-all duration-200
+           hover:bg-accent-bright
+           active:translate-y-px;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-sm border border-hair-strong px-5 py-3
+           text-[14px] font-medium text-ink
+           transition-colors duration-200
+           hover:border-accent hover:text-accent
+           active:translate-y-px;
+  }
+
   /* Screenshot frame. Subtle, so the UI inside reads as the subject. */
   .shot {
-    @apply relative overflow-hidden rounded-xl border border-hair bg-surface;
+    @apply relative overflow-hidden rounded-lg border border-hair bg-surface;
   }
 }
 
@@ -90,6 +151,18 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Logo-wall normaliser: flattens any source logo (white SVG, colour
+     PNG) to a single monochrome treatment so the strip reads as one row. */
+  .logo-mark {
+    filter: brightness(0) invert(1);
+    opacity: 0.62;
+    transition: opacity 0.2s ease;
+  }
+
+  .logo-mark:hover {
+    opacity: 1;
   }
 }
 

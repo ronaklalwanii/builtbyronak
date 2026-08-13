@@ -24,20 +24,13 @@ export const SOCIAL = {
   twitter: "", // leave empty to hide
 };
 
-// -- STATS (hero pills) ----------------------------------------
-export const STATS = [
-  { value: "7+", suffix: "yrs", label: "Experience" },
-  { value: "2,400", suffix: "+", label: "Cases on platforms I built" },
-  { value: "40→6", suffix: "h", label: "Review time cut per case" },
-  { value: "500", suffix: "+", label: "Tenants served" },
-  { value: "50k", suffix: " LOC", label: "Migrated to React + TS" },
-];
-
 // -- SERVICES --------------------------------------------------
 export const SERVICES = [
   {
     icon: "LayoutDashboard",
     name: "Admin Panel Build",
+    short: "React and TypeScript. Roles, permissions, data tables, multi-tenant if you need it.",
+    flagship: true,
     description:
       "A full admin dashboard in React and TypeScript. User and role management, permissions, data tables, charts, search and filtering, dark mode. Multi-tenant if you need it. I've built these for platforms serving 500+ organisations.",
     price: "From $2,000",
@@ -46,6 +39,8 @@ export const SERVICES = [
   {
     icon: "Sparkles",
     name: "AI Integration",
+    short: "Chat and copilot interfaces, streaming responses, document analysis, citations back to the source.",
+    flagship: true,
     description:
       "Wire an LLM into your existing app. Chat and copilot interfaces, streaming responses that render token by token, document analysis, search over your own data. Includes the parts most builds get wrong: citations back to the source, and sensible handling when the model returns something wrong.",
     price: "From $2,000",
@@ -54,6 +49,7 @@ export const SERVICES = [
   {
     icon: "Zap",
     name: "Landing Page",
+    short: "One focused page. Mobile responsive, contact wired to your inbox, deployed and live.",
     description:
       "A single focused page built to convert. Mobile responsive, contact form wired to your inbox, deployed and live.",
     price: "From $200",
@@ -62,6 +58,7 @@ export const SERVICES = [
   {
     icon: "Gauge",
     name: "Performance Audit & Fix",
+    short: "Lighthouse audit plus hands-on fixes to Core Web Vitals, load speed and mobile.",
     description:
       "Full Lighthouse audit plus hands-on fixes. Core Web Vitals, load speed, mobile performance. A good first project if you want to see how I work before committing to something larger.",
     price: "From $300",
@@ -70,6 +67,7 @@ export const SERVICES = [
   {
     icon: "Wrench",
     name: "Monthly Retainer",
+    short: "Ongoing frontend capacity. Hours agreed upfront so scope stays clear on both sides.",
     description:
       "Ongoing frontend capacity for teams shipping continuously. Bug fixes, new features, and changes without hiring. Hours agreed upfront so scope stays clear on both sides.",
     price: "From $500/mo",
@@ -87,7 +85,7 @@ export const WORK = [
     bullets: [
       "Architected production-grade Admin Panel for marketing teams using React, TypeScript & MUI",
       "Built Cyncly Homebase, a multi-tenant platform with RBAC, real-time notifications and complex interactive UIs",
-      "Developed MedicalEase: cut case review time from roughly 40h → 6h per case",
+      "Developed MedicalEase: cut case review time from roughly 40h to 6h per case",
       "Mentored 2 junior devs; established guild standards that improved onboarding speed by 25%",
     ],
     tags: [
@@ -106,7 +104,7 @@ export const WORK = [
     title: "Senior Web Developer",
     body: "Healthcare Technology Platform. Redesigned multi-portal analytics platform serving 5,000+ medical practices.",
     bullets: [
-      "Directed end-to-end redesign of 4 HIPAA-compliant portals; migrated 50k lines of jQuery → React + TypeScript with zero downtime",
+      "Directed end-to-end redesign of 4 HIPAA-compliant portals; migrated 50k lines of jQuery to React + TypeScript with zero downtime",
       "35% average performance uplift, LCP reduced from 3.8s to 2.5s via code-splitting and CSS inlining",
       "Eliminated 60% of runtime errors by leading TypeScript adoption across monorepo",
     ],
@@ -134,7 +132,7 @@ export const PROJECTS = [
     name: "MedicalEase",
     description:
       "AI-powered healthcare litigation platform. AI-generated chronologies, streaming document summaries, and an in-app PDF viewer with annotation panels, running across 2,400+ active cases.",
-    metric: "↓ Case review time: roughly 40h → 6h per case",
+    metric: "Case review time cut from roughly 40h to 6h per case",
     image: "",
     carouselImages: [
       "/images/projects/Dashboard.jpg",
@@ -158,7 +156,7 @@ export const PROJECTS = [
     name: "React Admin Templates",
     description:
       "Enterprise-grade dashboard template suite. 100+ fully typed components, dynamic theming and RBAC, powering 2,000+ production deployments.",
-    metric: "★ 4.8/5.0 · $750K ARR · 2,000+ deployments",
+    metric: "4.8/5.0 rating, $750K ARR, 2,000+ deployments",
     image: "",
     carouselImages: [
       "/images/projects/vuexy-dashboard.png",
@@ -216,39 +214,15 @@ export const ALSO_SHIPPED = [
     name: "Healthcare Portal Suite",
     description:
       "4 HIPAA-compliant portals for FitPeo serving 5,000+ medical practices. Migrated 50k lines of legacy jQuery to React and TypeScript with zero downtime.",
-    metric: "35% performance uplift · LCP 3.8s → 2.5s",
+    metric: "35% performance uplift, LCP 3.8s to 2.5s",
     tags: ["React", "TypeScript", "Next.js", "HIPAA"],
   },
   {
     name: "Laine",
     description:
       "AI marketing platform. Admin panel for enterprise campaign teams with multimodal AI capabilities and real-time analytics.",
-    metric: "Company wound down in 2026 · screenshots unavailable",
+    metric: "Company wound down in 2026, screenshots unavailable",
     tags: ["React", "TypeScript", "Redux", "AI/ML"],
-  },
-];
-
-// -- METRICS (trust section) ------------------------------------
-export const METRICS = [
-  {
-    value: "2,400+",
-    label: "Active cases on the AI platform I built",
-    sub: "MedicalEase, legal-medical litigation",
-  },
-  {
-    value: "40→6h",
-    label: "Case review time, per case",
-    sub: "via AI chronologies + document summaries",
-  },
-  {
-    value: "500+",
-    label: "Tenants on the platform I architected",
-    sub: "Cyncly Homebase, zero access-control incidents",
-  },
-  {
-    value: "50k",
-    label: "Lines migrated to React + TypeScript",
-    sub: "4 HIPAA portals, zero downtime",
   },
 ];
 
@@ -273,17 +247,6 @@ export const PROCESS = [
   },
 ];
 
-// -- TESTIMONIALS ----------------------------------------------
-//  Add real testimonials here after your first few projects.
-//  Leave array empty ([]) to hide the section entirely.
-export const TESTIMONIALS = [
-  // {
-  //   quote:   'Ronak delivered the landing page in under 48 hours. Clean code, looked great on mobile.',
-  //   name:    'Jane Smith',
-  //   role:    'Founder, Acme Co',
-  // },
-];
-
 // -- NAV LINKS -------------------------------------------------
 export const NAV_LINKS = [
   { label: "Work", href: "#projects" },
@@ -292,10 +255,30 @@ export const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ];
 
-// -- HERO STATS ------------------------------------------------
-//  Three only. Each one is defensible and traceable to a project.
-export const HERO_STATS = [
+// -- PROOF STATS -----------------------------------------------
+//  Shown in the credibility strip under the hero, not in the hero
+//  itself. Each one is defensible and traceable to a named project.
+export const PROOF_STATS = [
   { value: "2,400+", label: "Active cases" },
   { value: "500+", label: "Retailers" },
   { value: "4", label: "HIPAA portals" },
+  { value: "50k", label: "Lines migrated" },
 ];
+
+// -- LOGOS -----------------------------------------------------
+//  Companies whose products I built. York IE is where I worked;
+//  Cyncly was its client. Framed as "products I've built for" so
+//  the relationship is not overstated.
+//  Sources: york.ie and cyncly.com own brand assets.
+export const LOGOS = [
+  { name: "York IE", src: "/logos/york-ie.svg", width: 92 },
+  { name: "Cyncly", src: "/logos/cyncly.png", width: 96 },
+];
+
+// -- MARKETPLACE PROOF -----------------------------------------
+//  Public, third-party verifiable. The template products are linked
+//  from the React Admin Templates project below.
+export const MARKETPLACE = {
+  rating: "4.8 / 5.0",
+  detail: "across 2,000+ production deployments",
+};
