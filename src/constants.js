@@ -8,7 +8,7 @@ export const PERSONAL = {
   name: "Ronak Lalwani",
   title: "AI Integration for Web Apps",
   tagline: "Ship AI features your users actually trust.",
-  email: "hello@builtbyronak.com",
+  email: "ronak@builtbyronak.com",
   domain: "builtbyronak.com",
   available: true, // toggles the green "Available" badge
   photo: "", // e.g. '/images/ronak.jpg', leave empty to show initials

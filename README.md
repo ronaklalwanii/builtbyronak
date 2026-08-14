@@ -56,7 +56,7 @@ src/
 ```js
 export const PERSONAL = {
   name:    'Ronak Lalwani',
-  email:   'hello@builtbyronak.com',
+  email:   'ronak@builtbyronak.com',
   domain:  'builtbyronak.com',
   available: true,   // set false to hide the green badge
   photo:   '/images/ronak.jpg',  // add your photo here
