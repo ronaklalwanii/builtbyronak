@@ -62,6 +62,21 @@ export default function Navbar() {
               </span>
             )}
 
+            {/* Compact build of .btn-primary: the nav bar is 68px, so the full
+                px-5 py-3 CTA would crowd it. */}
+            {PERSONAL.calendly && (
+              <a
+                href={PERSONAL.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex items-center rounded-sm bg-accent px-3.5 py-2
+                           text-[12.5px] font-medium text-[#06121f]
+                           transition-colors duration-200 hover:bg-accent-bright"
+              >
+                Book a call
+              </a>
+            )}
+
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -89,6 +104,18 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
+
+              {PERSONAL.calendly && (
+                <a
+                  href={PERSONAL.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="btn-primary w-fit mt-1"
+                >
+                  Book a call
+                </a>
+              )}
             </div>
           </nav>
         )}

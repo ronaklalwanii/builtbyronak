@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Twitter, ArrowUpRight } from 'lucide-react'
+import { Mail, Linkedin, Twitter, ArrowUpRight, CalendarDays } from 'lucide-react'
 import { PERSONAL, SOCIAL } from '../constants'
 
 const SOCIALS = [
@@ -22,15 +22,34 @@ export default function Contact() {
               and a start date. Usually the same day.
             </p>
 
-            <a href={`mailto:${PERSONAL.email}`} className="btn-primary group w-fit mt-1">
-              <Mail size={15} aria-hidden="true" />
-              {PERSONAL.email}
-              <ArrowUpRight
-                size={15}
-                aria-hidden="true"
-                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </a>
+            {/* Calendar first for people ready to talk, address second for people
+                who'd rather write. Falls back to email-only if calendly is empty. */}
+            <div className="flex flex-wrap items-center gap-3 mt-1">
+              {PERSONAL.calendly && (
+                <a
+                  href={PERSONAL.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary group"
+                >
+                  <CalendarDays size={15} aria-hidden="true" />
+                  Book a 30-min call
+                  <ArrowUpRight
+                    size={15}
+                    aria-hidden="true"
+                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </a>
+              )}
+
+              <a
+                href={`mailto:${PERSONAL.email}`}
+                className={PERSONAL.calendly ? 'btn-ghost' : 'btn-primary group'}
+              >
+                <Mail size={15} aria-hidden="true" />
+                {PERSONAL.email}
+              </a>
+            </div>
           </div>
 
           <dl className="flex flex-col divide-y divide-hair border-y border-hair">

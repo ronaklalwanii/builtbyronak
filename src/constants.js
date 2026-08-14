@@ -9,6 +9,7 @@ export const PERSONAL = {
   title: "AI Integration for Web Apps",
   tagline: "Ship AI features your users actually trust.",
   email: "ronak@builtbyronak.com",
+  calendly: "https://calendly.com/ronak-builtbyronak/30min", // leave empty to hide every "Book a call" button
   domain: "builtbyronak.com",
   available: true, // toggles the green "Available" badge
   photo: "", // e.g. '/images/ronak.jpg', leave empty to show initials
