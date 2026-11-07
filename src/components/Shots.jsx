@@ -11,6 +11,28 @@ import 'yet-another-react-lightbox/plugins/counter.css'
 const toWebp = (src) => src.replace(/\.(jpg|jpeg|png)$/i, '.webp')
 
 /**
+ * The project lightbox, extracted so other surfaces (the Shopify gallery)
+ * can open the same viewer without duplicating its configuration.
+ */
+export function ShotLightbox({ images, name, index, onClose }) {
+  if (!images?.length) return null
+
+  return (
+    <Lightbox
+      open={index >= 0}
+      index={Math.max(index, 0)}
+      close={onClose}
+      slides={images.map((src, i) => ({ src, alt: `${name} screenshot ${i + 1}` }))}
+      plugins={[Zoom, Counter]}
+      carousel={{ finite: images.length === 1 }}
+      controller={{ closeOnBackdropClick: true }}
+      zoom={{ maxZoomPixelRatio: 3 }}
+      styles={{ container: { backgroundColor: 'rgba(6,8,11,0.96)' } }}
+    />
+  )
+}
+
+/**
  * Screenshot viewer. Embla for swipe and keyboard, yet-another-react-lightbox
  * for full-size viewing. Click any shot to enlarge.
  */
@@ -56,7 +78,7 @@ export default function Shots({ images, name, aspect = 'aspect-[16/9]' }) {
                     <img
                       src={src}
                       alt={`${name} screenshot ${i + 1}`}
-                      loading={i === 0 ? 'eager' : 'lazy'}
+                      loading="lazy"
                       decoding="async"
                       className="w-full h-full object-contain"
                     />
@@ -78,7 +100,14 @@ export default function Shots({ images, name, aspect = 'aspect-[16/9]' }) {
 
       {many && (
         <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-1.5">
+          {/* One control set per width: the 13-dot strip does not fit beside
+              the arrows in a half-width card, so touch widths get 44px arrows
+              and a counter instead. */}
+          <span className="block sm:hidden md:block lg:hidden font-mono text-[11px] tabular-nums text-ink-dim">
+            {selected + 1} / {images.length}
+          </span>
+
+          <div className="hidden sm:flex md:hidden lg:flex items-center gap-0 xl:gap-1.5">
             {images.map((src, i) => (
               <button
                 key={src}
@@ -86,21 +115,26 @@ export default function Shots({ images, name, aspect = 'aspect-[16/9]' }) {
                 onClick={() => embla?.scrollTo(i)}
                 aria-label={`Go to screenshot ${i + 1}`}
                 aria-current={i === selected}
-                className={`h-[3px] rounded-full transition-all duration-200 ${
-                  i === selected ? 'w-6 bg-accent' : 'w-2.5 bg-hair-strong hover:bg-ink-faint'
-                }`}
-              />
+                className="group grid h-11 w-6 place-items-center"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`block h-[3px] rounded-full transition-all duration-200 ${
+                    i === selected
+                      ? 'w-6 bg-accent'
+                      : 'w-2.5 bg-hair-strong group-hover:bg-ink-faint'
+                  }`}
+                />
+              </button>
             ))}
           </div>
 
-          {/* No "03 / 13" counter: the dot strip above already shows both
-              position and total. */}
           <div className="flex items-center gap-1">
             <button
               type="button"
               onClick={() => embla?.scrollPrev()}
               aria-label={`Previous ${name} screenshot`}
-              className="w-8 h-8 grid place-items-center rounded-sm border border-hair text-ink-soft hover:text-ink hover:border-hair-strong active:translate-y-px transition-all"
+              className="w-11 h-11 grid place-items-center rounded-sm border border-hair text-ink-soft hover:text-ink hover:border-hair-strong active:translate-y-px transition-all"
             >
               <ArrowLeft size={14} />
             </button>
@@ -108,7 +142,7 @@ export default function Shots({ images, name, aspect = 'aspect-[16/9]' }) {
               type="button"
               onClick={() => embla?.scrollNext()}
               aria-label={`Next ${name} screenshot`}
-              className="w-8 h-8 grid place-items-center rounded-sm border border-hair text-ink-soft hover:text-ink hover:border-hair-strong active:translate-y-px transition-all"
+              className="w-11 h-11 grid place-items-center rounded-sm border border-hair text-ink-soft hover:text-ink hover:border-hair-strong active:translate-y-px transition-all"
             >
               <ArrowRight size={14} />
             </button>
@@ -116,16 +150,11 @@ export default function Shots({ images, name, aspect = 'aspect-[16/9]' }) {
         </div>
       )}
 
-      <Lightbox
-        open={lightbox >= 0}
+      <ShotLightbox
+        images={images}
+        name={name}
         index={lightbox}
-        close={() => setLightbox(-1)}
-        slides={images.map((src) => ({ src }))}
-        plugins={[Zoom, Counter]}
-        carousel={{ finite: !many }}
-        controller={{ closeOnBackdropClick: true }}
-        zoom={{ maxZoomPixelRatio: 3 }}
-        styles={{ container: { backgroundColor: 'rgba(6,8,11,0.96)' } }}
+        onClose={() => setLightbox(-1)}
       />
     </div>
   )

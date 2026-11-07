@@ -9,17 +9,18 @@ const SOCIALS = [
 export default function Contact() {
   return (
     <section id="contact" className="rule">
-      <div className="shell section-pad">
+      <div className="shell pt-14 lg:pt-20 pb-20 lg:pb-28">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] gap-x-14 gap-y-12 items-start">
           <div className="flex flex-col gap-5">
-            <h2 className="text-title font-semibold text-ink text-balance max-w-[18ch]">
-              Got an AI feature that needs a real interface?
+            <h2 className="text-title font-semibold text-ink text-balance max-w-[20ch]">
+              Need a Shopify store or a React app?
             </h2>
 
             <p className="text-[15px] leading-relaxed text-ink-soft max-w-prose">
-              Or an admin panel you&apos;d rather not build in-house. Tell me what
-              you&apos;re shipping and by when, and I&apos;ll come back with scope, price,
-              and a start date. Usually the same day.
+              I build both: Shopify stores and custom themes, and React/Next.js apps
+              with AI features and admin panels. Tell me what you&apos;re shipping and
+              by when, and I&apos;ll come back with scope, price, and a start date.
+              Usually the same day.
             </p>
 
             {/* Calendar first for people ready to talk, address second for people
@@ -74,7 +75,7 @@ export default function Contact() {
                     href={SOCIAL[key]}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-[13px] text-ink-soft hover:text-ink transition-colors"
+                    className="flex min-h-11 items-center gap-1.5 text-[13px] text-ink-soft hover:text-ink transition-colors"
                   >
                     <Icon size={13} aria-hidden="true" />
                     {label}

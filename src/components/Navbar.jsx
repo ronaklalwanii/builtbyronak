@@ -33,21 +33,24 @@ export default function Navbar() {
         }`}
       >
         <div className="shell flex items-center justify-between gap-6 h-[68px]">
-          <a href="#hero" className="flex flex-col leading-none gap-1">
-            <span className="text-[13px] font-semibold tracking-[0.06em] uppercase text-ink">
+          <a
+            href="#hero"
+            className="flex min-h-11 shrink-0 flex-col justify-center leading-none gap-1"
+          >
+            <span className="whitespace-nowrap text-[13px] font-semibold tracking-[0.06em] uppercase text-ink">
               {PERSONAL.name}
             </span>
-            <span className="font-mono text-[9.5px] tracking-[0.14em] uppercase text-ink-dim">
-              Senior Frontend Engineer
+            <span className="whitespace-nowrap font-mono text-[9.5px] tracking-[0.14em] uppercase text-ink-dim">
+              Freelance Developer
             </span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-5 lg:gap-8">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[13px] text-ink-soft hover:text-ink transition-colors"
+                className="whitespace-nowrap text-[13px] text-ink-soft hover:text-ink transition-colors"
               >
                 {link.label}
               </a>
@@ -56,7 +59,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             {PERSONAL.available && (
-              <span className="hidden sm:flex items-center gap-2 text-[12.5px] text-live">
+              <span className="hidden lg:flex items-center gap-2 whitespace-nowrap text-[12.5px] text-live">
                 <span className="w-1.5 h-1.5 rounded-full bg-live animate-pulse-dot" />
                 Available now
               </span>
@@ -69,7 +72,7 @@ export default function Navbar() {
                 href={PERSONAL.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center rounded-sm bg-accent px-3.5 py-2
+                className="hidden md:inline-flex items-center whitespace-nowrap rounded-sm bg-accent px-3.5 py-2
                            text-[12.5px] font-medium text-[#06121f]
                            transition-colors duration-200 hover:bg-accent-bright"
               >
@@ -83,7 +86,7 @@ export default function Navbar() {
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label="Toggle navigation"
-              className="md:hidden flex flex-col gap-[5px] p-1"
+              className="md:hidden -mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[5px]"
             >
               <span className="block w-5 h-px bg-ink-soft" />
               <span className="block w-5 h-px bg-ink-soft" />
@@ -93,13 +96,13 @@ export default function Navbar() {
 
         {open && (
           <nav id="mobile-nav" className="md:hidden border-t border-hair bg-canvas">
-            <div className="shell py-4 flex flex-col gap-4">
+            <div className="shell py-2 flex flex-col">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="text-[14px] text-ink-soft"
+                  className="flex min-h-11 items-center text-[14px] text-ink-soft"
                 >
                   {link.label}
                 </a>

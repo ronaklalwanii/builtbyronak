@@ -6,7 +6,7 @@ export default function Process() {
 
   return (
     <section id="process" className="rule">
-      <div className="shell section-pad">
+      <div className="shell pt-20 lg:pt-28 pb-12 lg:pb-16">
         <h2 className="section-h pb-12">How I work</h2>
 
         {/* Full-width four-across. The numbers stay because the steps are

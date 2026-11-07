@@ -48,7 +48,7 @@ export default function Projects() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-[13px] text-ink-dim hover:text-ink transition-colors"
+                        className="flex min-h-11 items-center gap-1.5 text-[13px] text-ink-dim hover:text-ink transition-colors"
                       >
                         {link.label}
                         <ExternalLink size={11} />

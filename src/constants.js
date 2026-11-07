@@ -6,16 +6,16 @@
 // -- PERSONAL INFO --------------------------------------------
 export const PERSONAL = {
   name: "Ronak Lalwani",
-  title: "AI Integration for Web Apps",
-  tagline: "Ship AI features your users actually trust.",
+  title: "Freelance Shopify & React Developer",
+  tagline: "Shopify stores and React apps, built by one senior engineer.",
   email: "ronak@builtbyronak.com",
   calendly: "https://calendly.com/ronak-builtbyronak/30min", // leave empty to hide every "Book a call" button
   domain: "builtbyronak.com",
   available: true, // toggles the green "Available" badge
-  photo: "", // e.g. '/images/ronak.jpg', leave empty to show initials
+  photo: "/images/ronak-640.webp", // leave empty to show initials
   initials: "RL",
   description:
-    "Independent frontend and Shopify developer with 7+ years building production apps for healthcare, legal, and SaaS companies. I put AI into web products (streaming chat and copilot interfaces, document analysis workflows, admin dashboards) and I design and build Shopify stores that load fast and sell. You work with me directly, no agency layers. Available for freelance and contract work now.",
+    "Freelance developer with 7+ years building Shopify stores and custom themes, and React/Next.js apps with AI features and admin panels. I've shipped production work for healthcare, legal, and SaaS companies, and launched 15 Shopify stores for UK brands. You work with me directly, no agency layers. Available for freelance and contract work now.",
   footerNote: "Built with React 19 · Deployed on Vercel",
 };
 
@@ -28,10 +28,29 @@ export const SOCIAL = {
 // -- SERVICES --------------------------------------------------
 export const SERVICES = [
   {
+    icon: "Store",
+    name: "Shopify Store Development",
+    short: "New stores built end to end: setup, design, product pages, apps and launch.",
+    flagship: true,
+    description:
+      "A complete Shopify store, built end to end. Store setup, theme design, product and collection pages, navigation, apps, payments and shipping, then launch. I've launched 15 stores for UK brands, from brand identity through to the live site.",
+    price: "From $1,800",
+    turnaround: "3-5 weeks · scoped upfront",
+  },
+  {
+    icon: "Code2",
+    name: "Shopify Theme Development",
+    short: "Custom Liquid themes and sections, theme customisation, migrations and speed fixes.",
+    flagship: true,
+    description:
+      "Custom Liquid themes and sections built to your design, or focused work on the theme you already run. Theme customisation, theme-to-theme migrations, new sections and templates, app integrations, and speed fixes so the storefront loads fast on mobile.",
+    price: "From $900",
+    turnaround: "2-4 weeks · scoped upfront",
+  },
+  {
     icon: "LayoutDashboard",
     name: "Admin Panel Build",
     short: "React and TypeScript. Roles, permissions, data tables, multi-tenant if you need it.",
-    flagship: true,
     description:
       "A full admin dashboard in React and TypeScript. User and role management, permissions, data tables, charts, search and filtering, dark mode. Multi-tenant if you need it. I've built these for platforms serving 500+ organisations.",
     price: "From $2,000",
@@ -41,7 +60,6 @@ export const SERVICES = [
     icon: "Sparkles",
     name: "AI Integration",
     short: "Chat and copilot interfaces, streaming responses, document analysis, citations back to the source.",
-    flagship: true,
     description:
       "Wire an LLM into your existing app. Chat and copilot interfaces, streaming responses that render token by token, document analysis, search over your own data. Includes the parts most builds get wrong: citations back to the source, and sensible handling when the model returns something wrong.",
     price: "From $2,000",
@@ -383,6 +401,47 @@ export const SHOPIFY_STORES = [
     ]
   },
   {
+    name: "Dear Glow",
+    blurb: "Everyday beauty tools brand: brushes, sponges and organisers.",
+    summary: "A done-for-you launch for Dear Glow, a skin and beauty brand selling makeup brushes, blending sponges and beauty storage. I sourced the range, created the identity (a bold wordmark with a pink comma, on blush pink) and designed and built the Shopify store. Product-led sections carry the store: a best-seller card for the 14-piece brush set, an 'Organised' feature for beauty storage, the Dear Glow difference, the Dear Glow Edit categories and journal, reviews and a 'Stay in the Glow' sign-up.",
+    tags: [
+      "Product sourcing",
+      "Brand identity",
+      "UI design",
+      "Shopify"
+    ],
+    images: [
+      "/images/projects/shopify/dear-glow/dear-glow-homepage-hero.webp",
+      "/images/projects/shopify/dear-glow/dear-glow-organised.webp",
+      "/images/projects/shopify/dear-glow/dear-glow-difference.webp",
+      "/images/projects/shopify/dear-glow/dear-glow-edit-newsletter.webp",
+      "/images/projects/shopify/dear-glow/dear-glow-makeup-simple.webp",
+      "/images/projects/shopify/dear-glow/dear-glow-reviews.webp",
+      "/images/projects/shopify/dear-glow/dear-glow-footer.webp"
+    ]
+  },
+  {
+    name: "Elqorin",
+    blurb: "Home sauna and cold-plunge brand with contrast-therapy bundles.",
+    summary: "A done-for-you launch for Elqorin, a UK recovery brand selling home saunas, cold plunges and heat-plus-cold contrast bundles. I sourced the range, created the identity (a black block wordmark with an editorial serif on cream and black) and designed and built the Shopify store. It tells a problem-to-solution story, then presents three priced paths (Saunas, Cold Plunges and Heat + Cold), the delivery, warranty and returns standard, accessories, an FAQ on electrics, space and installation, and a direct line to an expert.",
+    tags: [
+      "Product sourcing",
+      "Brand identity",
+      "UI design",
+      "Shopify"
+    ],
+    images: [
+      "/images/projects/shopify/elqorin/elqorin-homepage-hero.webp",
+      "/images/projects/shopify/elqorin/elqorin-problem-reality.webp",
+      "/images/projects/shopify/elqorin/elqorin-solution.webp",
+      "/images/projects/shopify/elqorin/elqorin-collections.webp",
+      "/images/projects/shopify/elqorin/elqorin-standard-stories.webp",
+      "/images/projects/shopify/elqorin/elqorin-accessories.webp",
+      "/images/projects/shopify/elqorin/elqorin-faq.webp",
+      "/images/projects/shopify/elqorin/elqorin-footer.webp"
+    ]
+  },
+  {
     name: "Consent in Practice",
     blurb: "Brand and Shopify site for a UK consent and safeguarding training consultancy.",
     summary: "Consent in Practice is a UK consultancy that trains organisations on consent, safeguarding and digital harm. I created the brand identity (the 'cip' mark in black and periwinkle blue) and designed and built a Shopify site that turns a sensitive, specialist service into a clear offer for HR teams, leaders and universities. The site walks buyers from the problem to the business case and return on prevention, through five programmes from a 90-minute workshop to an annual partnership, the research-led methodology, case studies and founder Holly Kent's story, with consultation calls to action throughout.",
@@ -475,26 +534,6 @@ export const SHOPIFY_STORES = [
     ]
   },
   {
-    name: "Dear Glow",
-    blurb: "Everyday beauty tools brand: brushes, sponges and organisers.",
-    summary: "A done-for-you launch for Dear Glow, a skin and beauty brand selling makeup brushes, blending sponges and beauty storage. I sourced the range, created the identity (a bold wordmark with a pink comma, on blush pink) and designed and built the Shopify store. Product-led sections carry the store: a best-seller card for the 14-piece brush set, an 'Organised' feature for beauty storage, the Dear Glow difference, the Dear Glow Edit categories and journal, reviews and a 'Stay in the Glow' sign-up.",
-    tags: [
-      "Product sourcing",
-      "Brand identity",
-      "UI design",
-      "Shopify"
-    ],
-    images: [
-      "/images/projects/shopify/dear-glow/dear-glow-homepage-hero.webp",
-      "/images/projects/shopify/dear-glow/dear-glow-organised.webp",
-      "/images/projects/shopify/dear-glow/dear-glow-difference.webp",
-      "/images/projects/shopify/dear-glow/dear-glow-edit-newsletter.webp",
-      "/images/projects/shopify/dear-glow/dear-glow-makeup-simple.webp",
-      "/images/projects/shopify/dear-glow/dear-glow-reviews.webp",
-      "/images/projects/shopify/dear-glow/dear-glow-footer.webp"
-    ]
-  },
-  {
     name: "Albies",
     blurb: "Dog walking and visibility gear brand: products, brand and store.",
     summary: "A done-for-you launch for Albies Pet Supplies, a dog gear brand selling LED harnesses, collars and leads. I sourced the products, created the identity (an illustrated dog-head crest on sage green and stone) and designed and built the Shopify store. The range is organised around three needs, Control, Freedom and Safety, supported by research-led trust stats, an Everyday Essentials carousel, reviews, the brand and shelter-support story, a Dog Walking Edit journal and delivery and support perks with newsletter sign-up.",
@@ -537,27 +576,6 @@ export const SHOPIFY_STORES = [
       "/images/projects/shopify/scented-drive/scented-drive-customer-photos.webp",
       "/images/projects/shopify/scented-drive/scented-drive-journal.webp",
       "/images/projects/shopify/scented-drive/scented-drive-newsletter-footer.webp"
-    ]
-  },
-  {
-    name: "Elqorin",
-    blurb: "Home sauna and cold-plunge brand with contrast-therapy bundles.",
-    summary: "A done-for-you launch for Elqorin, a UK recovery brand selling home saunas, cold plunges and heat-plus-cold contrast bundles. I sourced the range, created the identity (a black block wordmark with an editorial serif on cream and black) and designed and built the Shopify store. It tells a problem-to-solution story, then presents three priced paths (Saunas, Cold Plunges and Heat + Cold), the delivery, warranty and returns standard, accessories, an FAQ on electrics, space and installation, and a direct line to an expert.",
-    tags: [
-      "Product sourcing",
-      "Brand identity",
-      "UI design",
-      "Shopify"
-    ],
-    images: [
-      "/images/projects/shopify/elqorin/elqorin-homepage-hero.webp",
-      "/images/projects/shopify/elqorin/elqorin-problem-reality.webp",
-      "/images/projects/shopify/elqorin/elqorin-solution.webp",
-      "/images/projects/shopify/elqorin/elqorin-collections.webp",
-      "/images/projects/shopify/elqorin/elqorin-standard-stories.webp",
-      "/images/projects/shopify/elqorin/elqorin-accessories.webp",
-      "/images/projects/shopify/elqorin/elqorin-faq.webp",
-      "/images/projects/shopify/elqorin/elqorin-footer.webp"
     ]
   },
   {
