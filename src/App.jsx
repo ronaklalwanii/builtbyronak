@@ -3,6 +3,7 @@ import Footer from './components/Footer'
 import Hero from './sections/Hero'
 import Credibility from './sections/Credibility'
 import Projects from './sections/Projects'
+import ShopifyStores from './sections/ShopifyStores'
 import Services from './sections/Services'
 import Work from './sections/Work'
 import Process from './sections/Process'
@@ -16,6 +17,7 @@ export default function App() {
         <Hero />
         <Credibility />
         <Projects />
+        <ShopifyStores />
         <Services />
         <Work />
         <Process />

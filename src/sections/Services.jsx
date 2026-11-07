@@ -10,7 +10,7 @@ function Card({ service, innerRef, large }) {
     <a
       href="#contact"
       ref={innerRef}
-      aria-label={`${service.name}, ${service.price}. Get in touch.`}
+      aria-label={`${service.name}. Get in touch.`}
       className={`reveal group flex flex-col gap-3 rounded-lg border p-6 transition-colors ${
         large
           ? 'border-accent-line bg-accent-dim hover:border-accent md:p-7'
@@ -21,11 +21,13 @@ function Card({ service, innerRef, large }) {
         {service.name}
       </h3>
 
+      {/* Pricing hidden for now. Prices still live in SERVICES (constants.js).
       <p
         className={`font-semibold tabular-nums text-ink ${large ? 'text-price' : 'text-[20px] leading-tight tracking-[-0.02em]'}`}
       >
         {service.price.replace('From ', '')}
       </p>
+      */}
 
       <p className="text-[13.5px] leading-relaxed text-ink-soft">{service.short}</p>
 
@@ -48,8 +50,8 @@ export default function Services() {
     <section id="services" className="rule">
       <div className="shell section-pad">
         <div className="flex items-baseline justify-between gap-6 pb-12">
-          <h2 className="section-h">Services and pricing</h2>
-          <p className="meta">All prices in USD</p>
+          <h2 className="section-h">Services</h2>
+          {/* <p className="meta">All prices in USD</p> */}
         </div>
 
         {/* Exactly five cells, 2 + 3. The two flagship engagements get the
@@ -68,7 +70,7 @@ export default function Services() {
         </div>
 
         <p className="pt-6 text-[13px] text-ink-dim">
-          Every engagement is scoped and priced in writing before work starts.
+          Every engagement is scoped and quoted in writing before work starts.
         </p>
       </div>
     </section>

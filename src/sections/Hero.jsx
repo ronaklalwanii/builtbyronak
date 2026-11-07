@@ -26,8 +26,8 @@ export default function Hero() {
             className="text-lede text-ink-soft max-w-measure animate-rise-in"
             style={{ animationDelay: '120ms' }}
           >
-            I help startups and agencies build production web apps with AI that users
-            actually trust.
+            Independent developer. I build production web apps, AI features users
+            actually trust, and Shopify stores that sell.
           </p>
 
           <div
