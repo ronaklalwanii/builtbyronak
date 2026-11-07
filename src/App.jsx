@@ -1,29 +1,49 @@
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Hero from './sections/Hero'
-import Credibility from './sections/Credibility'
-import Projects from './sections/Projects'
-import ShopifyStores from './sections/ShopifyStores'
-import Services from './sections/Services'
-import Work from './sections/Work'
-import Process from './sections/Process'
-import Contact from './sections/Contact'
+import { useEffect } from 'react'
+import { RouterProvider, useRouter } from './router'
+import { startScroll } from './engine/motion'
+import { startDriver } from './engine/driver'
+import Loader from './components/Loader'
+import Curtain from './components/Curtain'
+import Hud from './components/Hud'
+import Home from './pages/Home'
+import Case from './pages/Case'
+import NotFound from './pages/NotFound'
+import { Footer } from './sections/Contact'
 
-export default function App() {
+function Routes() {
+  const { path } = useRouter()
+  const m = path.match(/^\/work\/([^/]+)\/?$/)
+  if (path === '/' || path === '') return <Home />
+  if (m) return <Case slug={m[1]} />
+  return <NotFound />
+}
+
+function Shell() {
+  useEffect(() => {
+    startScroll()
+    startDriver()
+  }, [])
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <Credibility />
-        <Projects />
-        <ShopifyStores />
-        <Services />
-        <Work />
-        <Process />
-        <Contact />
+      <a className="skip" href="#main">
+        Skip to content
+      </a>
+      <Loader />
+      <Curtain />
+      <div className="hit" aria-hidden="true" />
+      <Hud />
+      <main id="main" tabIndex={-1}>
+        <Routes />
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function App({ path = '/' }) {
+  return (
+    <RouterProvider initialPath={path}>
+      <Shell />
+    </RouterProvider>
   )
 }

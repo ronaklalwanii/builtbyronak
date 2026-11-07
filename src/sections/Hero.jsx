@@ -1,136 +1,97 @@
-import { ArrowRight, CalendarDays } from 'lucide-react'
 import { PERSONAL } from '../constants'
+import { usePage, gsap, SplitText, intro, reduced, EASE } from '../engine/motion'
+import { subscribe } from '../engine/driver'
+import { Button, Roll } from '../components/A'
+import Haze from '../components/Haze'
 
-/**
- * Hero stack is capped at 4 text elements: eyebrow, headline, subtext, CTAs.
- * The identity row above the eyebrow is the person, not a fifth claim. The
- * stat row lives in <Credibility> directly below, which is where proof belongs.
- */
+// Long range: a void, a small figure far away, a wide thin name.
 export default function Hero() {
+  const ref = usePage((root) => {
+    if (reduced()) return
+    const q = gsap.utils.selector(root)
+    let alive = true
+    if (!intro.late) {
+      const split = SplitText.create(q('.hero__name')[0], { type: 'chars', mask: 'chars', charsClass: 'ch' })
+      const sub = SplitText.create(q('.hero__sub')[0], { type: 'lines', mask: 'lines' })
+      gsap.set(split.chars, { yPercent: 112 })
+      gsap.set(sub.lines, { yPercent: 108 })
+      gsap.set(q('.hero__portrait'), { autoAlpha: 0, scale: 0.8 })
+      gsap.set(q('.hero__cta > *'), { autoAlpha: 0, y: 14 })
+      intro.wait().then(() => {
+        if (!alive) return
+        gsap
+          .timeline({ defaults: { ease: EASE } })
+          .to(q('.hero__portrait'), { autoAlpha: 1, scale: 1, duration: 1.4 }, 0)
+          .to(split.chars, { yPercent: 0, duration: 1.15, stagger: 0.035 }, 0.05)
+          .to(sub.lines, { yPercent: 0, duration: 0.9, stagger: 0.08 }, 0.55)
+          .to(q('.hero__cta > *'), { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.08 }, 0.8)
+      })
+    }
+
+    // Stance: the figure bounces on the backbeat, like a fighter on his toes,
+    // and the range-finder brackets around it flash with the same pulse.
+    const fig = q('.hero__portrait')[0]
+    const off = subscribe((d) => {
+      fig.style.translate = `0 ${(-6 * d.beat).toFixed(2)}px`
+      fig.style.setProperty('--beat', d.beat.toFixed(2))
+    })
+
+    // Closing in: the figure rushes the viewer and the name slips away.
+    gsap.to(q('.hero__portrait'), {
+      scale: 5.5,
+      autoAlpha: 0,
+      ease: 'none',
+      scrollTrigger: { trigger: root, start: 'top top', end: 'bottom 25%', scrub: true },
+    })
+    gsap.to(q('.hero__name'), {
+      yPercent: -35,
+      ease: 'none',
+      scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: true },
+    })
+    return () => {
+      alive = false
+      off()
+    }
+  }, [])
+
   return (
-    <section id="hero" className="pt-[68px]">
-      <div className="shell grid grid-cols-1 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] xl:grid-cols-[minmax(0,480px)_minmax(0,1fr)] gap-x-10 xl:gap-x-14 gap-y-12 items-center pt-10 lg:pt-12 pb-16 lg:pb-24">
-        {/* -- Copy --------------------------------- */}
-        <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-3 animate-rise-in">
-            {PERSONAL.photo ? (
-              <img
-                src={PERSONAL.photo}
-                srcSet="/images/ronak-160.webp 160w, /images/ronak-640.webp 640w"
-                sizes="44px"
-                alt={PERSONAL.name}
-                width="44"
-                height="44"
-                className="h-11 w-11 rounded-full border border-hair object-cover object-[center_25%]"
-              />
-            ) : (
-              <span
-                aria-hidden="true"
-                className="grid h-11 w-11 place-items-center rounded-full border border-hair bg-surface font-mono text-[12px] tracking-[0.08em] text-ink-dim"
-              >
-                {PERSONAL.initials}
-              </span>
-            )}
-
-            <div className="flex flex-col gap-0.5">
-              <span className="text-[13.5px] font-medium text-ink">{PERSONAL.name}</span>
-              {PERSONAL.available && (
-                <span className="flex items-center gap-1.5 text-[12px] text-live">
-                  <span className="h-1.5 w-1.5 rounded-full bg-live animate-pulse-dot" />
-                  Available for freelance work
-                </span>
-              )}
-            </div>
-          </div>
-
-          <p className="eyebrow-accent animate-rise-in" style={{ animationDelay: '60ms' }}>
-            Freelance · Shopify + React
-          </p>
-
-          <h1
-            className="text-display font-semibold text-ink text-balance animate-rise-in"
-            style={{ animationDelay: '120ms' }}
-          >
-            Shopify stores and React apps, built by one senior engineer.
-          </h1>
-
-          <p
-            className="text-lede text-ink-soft max-w-[46ch] animate-rise-in"
-            style={{ animationDelay: '180ms' }}
-          >
-            7+ years building Shopify stores and React/Next.js apps with AI. You work
-            with me directly.
-          </p>
-
-          <div
-            className="flex flex-wrap items-center gap-3 pt-2 animate-rise-in"
-            style={{ animationDelay: '240ms' }}
-          >
-            {PERSONAL.calendly ? (
-              <a
-                href={PERSONAL.calendly}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary group"
-              >
-                <CalendarDays size={15} aria-hidden="true" />
-                Book a call
-                <ArrowRight
-                  size={15}
-                  aria-hidden="true"
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
-              </a>
-            ) : (
-              <a href="#contact" className="btn-primary group">
-                Get in touch
-                <ArrowRight
-                  size={15}
-                  aria-hidden="true"
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
-              </a>
-            )}
-
-            <a href="#projects" className="btn-ghost">
-              See the work
-            </a>
-          </div>
-        </div>
-
-        {/* -- Product shots -------------------------
-            The Shopify storefront is the LCP element: eager, high priority,
-            WebP with explicit dimensions. srcSet sits on the img so Chrome
-            does not also fetch the fallback, and the app shot overlaps below
-            it and stays lazy so it cannot compete for bandwidth. */}
-        <div className="min-w-0">
-          <figure className="shot">
-            <img
-              src="/images/projects/shopify/cozy-skies/cozy-skies-homepage-hero-800.webp"
-              srcSet="/images/projects/shopify/cozy-skies/cozy-skies-homepage-hero-800.webp 800w, /images/projects/shopify/cozy-skies/cozy-skies-homepage-hero.webp 1280w"
-              sizes="(min-width: 1280px) 720px, (min-width: 1024px) 500px, 100vw"
-              alt="Cozy Skies Shopify storefront with a hero product, benefits and a shop button"
-              width="1280"
-              height="703"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className="block w-full h-auto"
-            />
-          </figure>
-
-          <figure className="shot relative z-10 -mt-10 ml-auto w-[78%] sm:w-[62%] lg:w-[64%]">
-            <img
-              src="/images/projects/Chronology-Timeline-800.webp"
-              alt="MedicalEase case timeline with an AI-generated summary and linked medical records"
-              width="800"
-              height="450"
-              loading="lazy"
-              fetchPriority="low"
-              decoding="async"
-              className="block w-full h-auto"
-            />
-          </figure>
+    <section className="hero" ref={ref}>
+      <div className="hero__bg">
+        <Haze />
+      </div>
+      <div className="hero__portrait">
+        <figure className="hero__photo">
+          <img
+            src="/images/ronak-160.webp"
+            srcSet="/images/ronak-160.webp 160w, /images/ronak-320.webp 320w, /images/ronak-640.webp 640w"
+            sizes="(min-width: 1024px) 9vw, 96px"
+            width="640"
+            height="768"
+            alt="Ronak working on a laptop outdoors, hills behind him"
+            fetchPriority="low"
+          />
+        </figure>
+        <span className="hero__finder" aria-hidden="true" />
+        <p className="hero__tag" aria-hidden="true">
+          Subject
+          <br />
+          Long range
+        </p>
+      </div>
+      <h1 className="hero__name">
+        <span>Ronak</span> <span>Lalwani</span>
+      </h1>
+      <div className="hero__foot">
+        <p className="hero__sub">
+          Freelance Shopify and React developer. I work alone, so the person you brief is the person who builds it.
+        </p>
+        <div className="hero__cta">
+          {PERSONAL.calendly && (
+            <Button href={PERSONAL.calendly} className="btn--accent">
+              Book a 30 minute call
+            </Button>
+          )}
+          <Roll href={`mailto:${PERSONAL.email}`}>Or email me</Roll>
         </div>
       </div>
     </section>

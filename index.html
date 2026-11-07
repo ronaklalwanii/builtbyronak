@@ -2,7 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#090b11" />
+    <script>
+      // Decide before first paint: JS present, and whether the loader runs
+      // (every full load, never under reduced motion).
+      (function () {
+        var h = document.documentElement
+        h.classList.add('js')
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) h.classList.add('has-loader')
+      })()
+    </script>
     <title>Ronak Lalwani, Freelance Shopify &amp; React Developer</title>
     <meta
       name="description"
@@ -46,6 +56,8 @@
       name="google-site-verification"
       content="Tz_v5I1Ff3f9dFWtWcqfB0wrD_9W0lKAxhnX88oRoWo"
     />
+    <link rel="preload" href="/src/fonts/Archivo-Variable-wdth.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
@@ -126,8 +138,8 @@
       }
     </script>
 
-    <!-- Geist and Geist Mono are self-hosted (see src/index.css). No
-         third-party request on the critical path. -->
+    <!-- Archivo (variable, width + weight) and Geist Mono are self-hosted
+         (see src/index.css). No third-party request on the critical path. -->
   </head>
   <body>
     <div id="root"></div>
