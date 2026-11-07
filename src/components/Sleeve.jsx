@@ -1,12 +1,19 @@
 // A record sleeve: full-colour cover art
 // with the record peeking out from behind it. `.disc` is turned by
 // engine/spin.js; the sleeve slides and the record comes out in CSS.
-export default function Sleeve({ cover, alt = '', eager = false, sizes, disc = true, className = '' }) {
+export default function Sleeve({ cover, alt = '', eager = false, sizes, disc = true, mark, className = '' }) {
   return (
     <span className={`sleeve ${className}`}>
       {disc && (
         <span className="disc" aria-hidden="true">
-          <i />
+          <i>
+            {mark && (
+              <>
+                <b>{mark.initials}</b>
+                <small>{mark.no}</small>
+              </>
+            )}
+          </i>
         </span>
       )}
       <span className="sleeve__art" style={{ aspectRatio: `${cover.w} / ${cover.h}` }}>

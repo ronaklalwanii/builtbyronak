@@ -8,7 +8,7 @@ function Album({ c, i }) {
     <article className={`album ${i % 2 ? 'album--r' : ''}`}>
       <A href={c.href} className="album__cover" aria-hidden="true" tabIndex={-1}>
         <span className="album__no">A{i + 1}</span>
-        <Sleeve cover={c.cover} sizes="(min-width: 1024px) 46vw, 92vw" />
+        <Sleeve cover={c.cover} sizes="(min-width: 1024px) 46vw, 92vw" mark={c.mark} />
       </A>
       <div className="album__notes">
         <h4 className="album__title">{c.name}</h4>
@@ -128,12 +128,19 @@ export default function WorkIndex() {
           <ul>
             {ALSO.map((a) => (
               <li key={a.name}>
-                <h4>{a.name}</h4>
-                <p>{a.description}</p>
-                <p className="also__meta">
-                  {a.sector} · {a.tags.join(', ')}
-                </p>
-                <p className="also__meta">{a.metric}</p>
+                <span className={`typecover typecover--${a.name === 'Laine' ? 'ink' : 'blue'}`} aria-hidden="true">
+                  <span className="typecover__side">Also recorded</span>
+                  <span className="typecover__name">{a.name}</span>
+                  <span className="typecover__meta">{a.tags.slice(0, 3).join(' · ')}</span>
+                </span>
+                <div className="also__text">
+                  <h4>{a.name}</h4>
+                  <p>{a.description}</p>
+                  <p className="also__meta">
+                    {a.sector} · {a.tags.join(', ')}
+                  </p>
+                  <p className="also__meta">{a.metric}</p>
+                </div>
               </li>
             ))}
           </ul>

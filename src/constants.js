@@ -336,18 +336,26 @@ export const PROCESS = [
   {
     title: "Understand",
     body: "A call and a written brief. What you're shipping, who uses it, and what counts as done.",
+    when: "Day 1",
+    get: "A written brief we both sign off",
   },
   {
     title: "Scope",
     body: "Fixed price, fixed deliverables, a start and end date. Sent in writing before any work begins.",
+    when: "Within 2 days",
+    get: "Fixed quote, deliverables and timeline",
   },
   {
     title: "Build",
     body: "Work in your repo, your process. Pull requests that explain themselves, so review never needs a call.",
+    when: "Through the project",
+    get: "Weekly progress updates and working builds",
   },
   {
     title: "Hand over",
     body: "Tested, documented, and maintainable by your team after I'm gone. No lock-in to me.",
+    when: "Final week",
+    get: "Docs, a handover walkthrough and your code",
   },
 ];
 

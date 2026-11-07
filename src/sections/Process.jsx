@@ -23,6 +23,12 @@ export default function Process() {
             <span className="step__n">{String(i + 1).padStart(2, '0')}</span>
             <h3>{s.title}</h3>
             <p>{s.body}</p>
+            <dl className="step__credits">
+              <dt>When</dt>
+              <dd>{s.when}</dd>
+              <dt>You get</dt>
+              <dd>{s.get}</dd>
+            </dl>
           </li>
         ))}
       </ol>

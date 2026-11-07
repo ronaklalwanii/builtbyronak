@@ -85,6 +85,7 @@ const shopify = SHOPIFY_STORES.map((s) => {
     cover: { ...image(s.images[0], slug), position: '50% 0%' },
     href: `/work/${slug}`,
     role: 'Design and build, The Hive Digital',
+    live: s.live || '',
   }
 })
 
@@ -114,6 +115,11 @@ const apps = PROJECTS.map((p) => {
 const ORDER = ['medicalease', 'cyncly-homebase', 'react-admin-templates']
 export const APP_CASES = ORDER.map((slug) => apps.find((a) => a.slug === slug))
 export const SHOPIFY_CASES = shopify
+
+// Record centre label: the project's initials and its place on the record (A1, B3...).
+const initials = (name) => (name.match(/[A-Z]/g) || [name[0]]).slice(0, 3).join('')
+APP_CASES.forEach((c, i) => (c.mark = { initials: initials(c.name), no: `A${i + 1}` }))
+SHOPIFY_CASES.forEach((c, i) => (c.mark = { initials: initials(c.name), no: `B${i + 1}` }))
 export const CASES = [...APP_CASES, ...SHOPIFY_CASES]
 export const caseBySlug = (slug) => CASES.find((c) => c.slug === slug)
 // "Next" stays on the same side of the record.

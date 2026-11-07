@@ -31,7 +31,7 @@ export default function Case({ slug }) {
     // On a direct load there is nothing to hide, so it simply stays out.
     if (intro.navigated) {
       const sleeve = root.querySelector('.case__art .sleeve')
-      const rest = parseFloat(getComputedStyle(sleeve).getPropertyValue('--out')) || 0.34
+      const rest = parseFloat(getComputedStyle(sleeve).getPropertyValue('--out')) || 0.62
       const title = SplitText.create(root.querySelector('.case__title'), { type: 'chars', mask: 'chars', aria: 'none' })
       gsap.set(sleeve, { '--out': 0 })
       gsap.set(title.chars, { yPercent: 110 })
@@ -89,7 +89,7 @@ export default function Case({ slug }) {
           <p className="case__sector">{c.sector}</p>
         </div>
         <div className="case__art">
-          <Sleeve cover={c.cover} alt={`${c.name}: ${c.cover.caption}`} eager sizes="(min-width: 1024px) 46vw, 92vw" />
+          <Sleeve cover={c.cover} alt={`${c.name}: ${c.cover.caption}`} eager sizes="(min-width: 1024px) 46vw, 92vw" mark={c.mark} />
         </div>
       </header>
 
@@ -136,6 +136,16 @@ export default function Case({ slug }) {
                   <dd>{c.outcome}</dd>
                 </>
               )}
+              {c.live && (
+                <>
+                  <dt>Live</dt>
+                  <dd className="credits__links">
+                    <a href={c.live} target="_blank" rel="noopener noreferrer">
+                      Visit the store <span aria-hidden="true">↗</span>
+                    </a>
+                  </dd>
+                </>
+              )}
               {c.links?.length > 0 && (
                 <>
                   <dt>Live demos</dt>
@@ -157,10 +167,15 @@ export default function Case({ slug }) {
 
       <nav className="case__next" aria-label="Next project">
         <p className="label">Next on {isApp ? 'Side A' : 'Side B'}</p>
-        <A href={next.href} className="case__nextlink">
-          <span className="roll">
-            <span className="roll__in" data-text={next.name}>
-              {next.name}
+        <A href={next.href} className="case__nextcard">
+          <span className="case__nextart">
+            <Sleeve cover={next.cover} disc={false} sizes="(min-width: 900px) 30vw, 80vw" />
+          </span>
+          <span className="case__nextlink">
+            <span className="roll">
+              <span className="roll__in" data-text={next.name}>
+                {next.name}
+              </span>
             </span>
           </span>
         </A>

@@ -50,9 +50,13 @@ export default function Hero() {
             aria-label={`${c.name} case study`}
             style={{ '--d': 160 + i * 110 }}
           >
-            <Sleeve cover={c.cover} eager={i === 0} sizes="(min-width: 1024px) 30vw, 70vw" disc={i === 0} />
+            <Sleeve cover={c.cover} eager={i === 0} sizes="(min-width: 1024px) 36vw, 80vw" disc={i === 0} mark={c.mark} />
           </A>
         ))}
+        <A href={APP_CASES[0].href} className="hero__caption">
+          <span className="hero__caption-no">A1</span> {APP_CASES[0].name} · {APP_CASES[0].sector}{' '}
+          <span aria-hidden="true">→</span>
+        </A>
       </div>
     </section>
   )
