@@ -1,92 +1,38 @@
-import { ArrowUpRight } from 'lucide-react'
 import { SERVICES } from '../constants'
-import { useRevealList } from '../lib/useReveal'
+import { usePage, gsap, ScrollTrigger, revealLines, reduced, EASE } from '../engine/motion'
 
-const flagship = SERVICES.filter((s) => s.flagship)
-const rest = SERVICES.filter((s) => !s.flagship)
-
-function Card({ service, innerRef, large, className = '' }) {
-  return (
-    <a
-      href="#contact"
-      ref={innerRef}
-      className={`reveal group flex flex-col gap-3 rounded-lg border p-6 transition-colors ${
-        large
-          ? 'border-accent-line bg-accent-dim hover:border-accent md:p-7'
-          : 'border-hair bg-surface hover:border-hair-strong'
-      } ${className}`}
-    >
-      <h3 className={`font-medium text-ink ${large ? 'text-[16px]' : 'text-[14.5px]'}`}>
-        {service.name}
-      </h3>
-
-      {/* Pricing hidden for now. Prices still live in SERVICES (constants.js).
-      <p
-        className={`font-semibold tabular-nums text-ink ${large ? 'text-price' : 'text-[20px] leading-tight tracking-[-0.02em]'}`}
-      >
-        {service.price.replace('From ', '')}
-      </p>
-      */}
-
-      <p className="text-[13.5px] leading-relaxed text-ink-soft">{service.short}</p>
-
-      <div className="mt-auto flex items-end justify-between gap-4 pt-3">
-        <span className="text-[12px] text-ink-soft">{service.turnaround}</span>
-        <ArrowUpRight
-          size={15}
-          aria-hidden="true"
-          className="shrink-0 text-ink-faint transition-colors group-hover:text-accent"
-        />
-      </div>
-    </a>
-  )
-}
-
+// Prices stay in SERVICES but are not shown.
 export default function Services() {
-  const getRef = useRevealList(SERVICES.length)
+  const ref = usePage((root) => {
+    root.querySelectorAll('[data-lines]').forEach((el) => revealLines(el))
+    if (reduced()) return
+    const items = [...root.querySelectorAll('.svc')]
+    gsap.set(items, { autoAlpha: 0, y: 22 })
+    ScrollTrigger.batch(items, {
+      start: 'top 92%',
+      once: true,
+      onEnter: (b) => gsap.to(b, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.06, ease: EASE }),
+    })
+  }, [])
 
   return (
-    <section id="services" className="rule">
-      <div className="shell section-pad">
-        <div className="flex items-baseline justify-between gap-6 pb-12">
-          <h2 className="section-h">Services</h2>
-          {/* <p className="meta">All prices in USD</p> */}
-        </div>
-
-        {/* Seven cells: 2 flagship + 5 supporting. The flagship row is two
-            wide accent-tinted cells. The supporting grid is six columns at
-            lg: two half-width cells, then three thirds, so no row ends with
-            a lone card. At sm, the last card spans both columns. */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {flagship.map((service, i) => (
-            <Card key={service.name} service={service} innerRef={getRef(i)} large />
-          ))}
-        </div>
-
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
-          {rest.map((service, i) => {
-            const span =
-              i < 2
-                ? 'lg:col-span-3'
-                : i === rest.length - 1
-                  ? 'sm:col-span-2 lg:col-span-2'
-                  : 'lg:col-span-2'
-
-            return (
-              <Card
-                key={service.name}
-                service={service}
-                innerRef={getRef(i + flagship.length)}
-                className={span}
-              />
-            )
-          })}
-        </div>
-
-        <p className="pt-6 text-[13px] text-ink-dim">
-          Every engagement is scoped and quoted in writing before work starts.
+    <section className="services" id="services" ref={ref}>
+      <header className="services__side">
+        <h2>Services</h2>
+        <p data-lines>
+          Engagements from a one-week audit to a full product build. Every one is scoped and quoted in writing before work
+          starts.
         </p>
-      </div>
+      </header>
+      <ul className="svcs">
+        {SERVICES.map((s) => (
+          <li className="svc" key={s.name}>
+            <h3>{s.name}</h3>
+            <p>{s.short}</p>
+            <span className="svc__time">{s.turnaround}</span>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
