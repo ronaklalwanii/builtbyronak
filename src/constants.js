@@ -6,8 +6,8 @@
 // -- PERSONAL INFO --------------------------------------------
 export const PERSONAL = {
   name: "Ronak Lalwani",
-  title: "Freelance Shopify & React Developer",
-  tagline: "Shopify stores and React apps, built by one senior engineer.",
+  title: "Freelance React & Next.js Developer",
+  tagline: "Web apps with AI for startups. Shopify stores too.",
   email: "ronak@builtbyronak.com",
   calendly: "https://calendly.com/ronak-builtbyronak/30min", // leave empty to hide every "Book a call" button
   domain: "builtbyronak.com",
@@ -15,7 +15,7 @@ export const PERSONAL = {
   photo: "/images/ronak-640.webp", // leave empty to show initials
   initials: "RL",
   description:
-    "Freelance developer with 7+ years building Shopify stores and custom themes, and React/Next.js apps with AI features and admin panels. I've shipped production work for healthcare, legal, and SaaS companies, and launched 15 Shopify stores for UK brands. You work with me directly, no agency layers. Available for freelance and contract work now.",
+    "Freelance developer with 7+ years building React and Next.js apps with AI features, admin panels and multi-tenant platforms for startups, plus Shopify stores and themes. Production work for healthcare, legal and SaaS companies. You work with me directly, no agency layers. Available for freelance and contract work now.",
   footerNote: "Built with React 19 · Deployed on Vercel",
 };
 
@@ -28,24 +28,23 @@ export const SOCIAL = {
 // -- SERVICES --------------------------------------------------
 export const SERVICES = [
   {
-    icon: "Store",
-    name: "Shopify Store Development",
-    short: "New stores built end to end: setup, design, product pages, apps and launch.",
-    flagship: true,
+    icon: "Sparkles",
+    name: "AI Integration",
+    short: "Chat and copilot interfaces, streaming responses, document analysis, citations back to the source.",
     description:
-      "A complete Shopify store, built end to end. Store setup, theme design, product and collection pages, navigation, apps, payments and shipping, then launch. I've launched 15 stores for UK brands, from brand identity through to the live site.",
-    price: "From $1,800",
-    turnaround: "3-5 weeks · scoped upfront",
+      "Wire an LLM into your existing app. Chat and copilot interfaces, streaming responses that render token by token, document analysis, search over your own data. Includes the parts most builds get wrong: citations back to the source, and sensible handling when the model returns something wrong.",
+    price: "From $2,000",
+    turnaround: "2-4 weeks · scoped upfront",
   },
   {
-    icon: "Code2",
-    name: "Shopify Theme Development",
-    short: "Custom Liquid themes and sections, theme customisation, migrations and speed fixes.",
+    icon: "AppWindow",
+    name: "Web App / SaaS Development",
+    short: "Full web apps in React and Next.js: auth, roles, dashboards and APIs, deployed and documented.",
     flagship: true,
     description:
-      "Custom Liquid themes and sections built to your design, or focused work on the theme you already run. Theme customisation, theme-to-theme migrations, new sections and templates, app integrations, and speed fixes so the storefront loads fast on mobile.",
-    price: "From $900",
-    turnaround: "2-4 weeks · scoped upfront",
+      "A complete web app in React and Next.js: authentication, roles and permissions, dashboards, and the APIs behind them, deployed and documented so your team can take it over.",
+    price: "From $3,000",
+    turnaround: "4-8 weeks · scoped upfront",
   },
   {
     icon: "LayoutDashboard",
@@ -57,12 +56,31 @@ export const SERVICES = [
     turnaround: "3-5 weeks · scoped upfront",
   },
   {
-    icon: "Sparkles",
-    name: "AI Integration",
-    short: "Chat and copilot interfaces, streaming responses, document analysis, citations back to the source.",
+    icon: "Wrench",
+    name: "Monthly Retainer",
+    short: "Ongoing frontend capacity. Hours agreed upfront so scope stays clear on both sides.",
     description:
-      "Wire an LLM into your existing app. Chat and copilot interfaces, streaming responses that render token by token, document analysis, search over your own data. Includes the parts most builds get wrong: citations back to the source, and sensible handling when the model returns something wrong.",
-    price: "From $2,000",
+      "Ongoing frontend capacity for teams shipping continuously. Bug fixes, new features, and changes without hiring. Hours agreed upfront so scope stays clear on both sides.",
+    price: "From $500/mo",
+    turnaround: "Rolling monthly · cancel anytime",
+  },
+  {
+    icon: "Store",
+    name: "Shopify Store Development",
+    short: "New stores built end to end: setup, design, product pages, apps and launch.",
+    flagship: true,
+    description:
+      "A complete Shopify store, built end to end. Store setup, theme design, product and collection pages, navigation, apps, payments and shipping, then launch. I've delivered 15 stores for UK brands through my studio, The Hive Digital, from brand identity through to the live site.",
+    price: "From $1,800",
+    turnaround: "3-5 weeks · scoped upfront",
+  },
+  {
+    icon: "Code2",
+    name: "Shopify Theme Development",
+    short: "Custom Liquid themes and sections, theme customisation, migrations and speed fixes.",
+    description:
+      "Custom Liquid themes and sections built to your design, or focused work on the theme you already run. Theme customisation, theme-to-theme migrations, new sections and templates, app integrations, and speed fixes so the storefront loads fast on mobile.",
+    price: "From $900",
     turnaround: "2-4 weeks · scoped upfront",
   },
   {
@@ -83,15 +101,6 @@ export const SERVICES = [
     price: "From $300",
     turnaround: "3-5 days · full report included",
   },
-  {
-    icon: "Wrench",
-    name: "Monthly Retainer",
-    short: "Ongoing frontend capacity. Hours agreed upfront so scope stays clear on both sides.",
-    description:
-      "Ongoing frontend capacity for teams shipping continuously. Bug fixes, new features, and changes without hiring. Hours agreed upfront so scope stays clear on both sides.",
-    price: "From $500/mo",
-    turnaround: "Rolling monthly · cancel anytime",
-  },
 ];
 
 // -- WORK EXPERIENCE -------------------------------------------
@@ -99,12 +108,12 @@ export const WORK = [
   {
     period: "Apr 2026 to Present",
     company: "Independent",
-    title: "Freelance Frontend & Shopify Developer",
-    body: "Working directly with founders and brands on Shopify stores and React web apps.",
+    title: "Freelance React & Shopify Developer",
+    body: "Working directly with startups and brands on React and Next.js web apps, and on Shopify stores.",
     bullets: [
-      "Designed and built 15 Shopify stores and sites end to end, from brand identity to live store",
+      "Delivered 15 Shopify stores and sites through my studio, The Hive Digital, from brand identity to live store",
       "Custom Liquid sections, landing pages and store speed work",
-      "React, TypeScript and AI integration work for product teams",
+      "React, Next.js, TypeScript and AI integration work for startups and product teams",
     ],
     tags: ["Shopify", "Liquid", "React", "TypeScript", "AI Integration"],
   },
@@ -147,7 +156,7 @@ export const WORK = [
     title: "Frontend Developer",
     body: "Core engineering team for the React admin dashboard product line, 2,000+ enterprise deployments.",
     bullets: [
-      "Built suite of React admin templates achieving 4.8/5.0 rating and $750K ARR",
+      "Built suite of React admin templates rated 4.8/5.0 across 2,000+ enterprise deployments",
       "Designed 100+ fully typed, documented components with dynamic theming and RBAC",
       "Implemented JWT + RBAC auth flows shared across the template line",
     ],
@@ -164,6 +173,26 @@ export const PROJECTS = [
     description:
       "AI-powered healthcare litigation platform. AI-generated chronologies, streaming document summaries, and an in-app PDF viewer with annotation panels, running across 2,400+ active cases.",
     metric: "Case review time cut from roughly 40h to 6h per case",
+    cover: "/images/projects/Chronology-Timeline.webp",
+    coverPosition: "62% 30%",
+    role: "Senior Frontend Engineer, York IE",
+    tracks: [
+      "Case dashboard and case management",
+      "AI-generated medical chronology and events timeline",
+      "Streaming document summaries",
+      "In-app PDF viewer with annotation panels",
+      "Billing chronology and billing detail views",
+      "Medical records and record detail pages",
+    ],
+    study: {
+      problem:
+        "Medical record review is the slowest part of a healthcare litigation case. Teams read through a patient's records by hand to build a chronology of what happened and when, and a single case took roughly 40 hours.",
+      built:
+        "A web platform where the records go in and a chronology comes out. AI generates the medical chronology and an events timeline, summaries of each document stream in as they are produced, and the original PDF opens beside them with annotation panels so every statement can be checked against its source. Billing chronologies, record detail pages and case management sit around it. It runs across 2,400+ active cases.",
+      architecture:
+        "A React 18 and TypeScript front end. TanStack Query handles server state, caching and refetching across the case, record and chronology views. AI output is streamed into the page as it is generated rather than waiting for a full response, and the chronology, PDF viewer and annotation panels live in one case workspace.",
+      outcome: "Case review time cut from roughly 40 hours to 6 per case, across 2,400+ active cases.",
+    },
     image: "",
     carouselImages: [
       "/images/projects/Dashboard.jpg",
@@ -187,7 +216,27 @@ export const PROJECTS = [
     name: "React Admin Templates",
     description:
       "Enterprise-grade dashboard template suite. 100+ fully typed components, dynamic theming and RBAC, powering 2,000+ production deployments.",
-    metric: "4.8/5.0 rating, $750K ARR, 2,000+ deployments",
+    metric: "4.8/5.0 marketplace rating, 2,000+ deployments",
+    cover: "/images/projects/materio-dashboard.webp",
+    coverPosition: "30% 40%",
+    role: "Frontend Developer, Clevision Technologies",
+    tracks: [
+      "100+ fully typed, documented components",
+      "Dynamic theming",
+      "Role-based access control",
+      "JWT authentication flows",
+      "Dashboards, tables and forms for admin products",
+      "Four templates: Vuexy, Materialize, Materio and Sneat",
+    ],
+    study: {
+      problem:
+        "Teams starting a new admin product lose weeks to the same groundwork: layout, tables, forms, theming, sign-in and permissions. A template only helps if it is typed, themeable and safe to extend.",
+      built:
+        "A suite of React admin templates for the Clevision product line: 100+ fully typed, documented components, dynamic theming, role-based access control and JWT auth flows shared across the line. The templates include Vuexy, Materialize, Materio and Sneat, each with a public demo.",
+      architecture:
+        "React, Next.js, TypeScript and Material-UI. Components are typed end to end and styled through one theming layer, and the RBAC and JWT authentication flows are shared across the template line instead of rebuilt for each one.",
+      outcome: "A 4.8/5.0 marketplace rating and 2,000+ deployments.",
+    },
     image: "",
     carouselImages: [
       "/images/projects/vuexy-dashboard.png",
@@ -226,7 +275,27 @@ export const PROJECTS = [
     name: "Cyncly Homebase",
     description:
       "Multi-tenant core platform for a flooring marketplace. Enterprise RBAC, plugin registry, and multi-channel notifications across in-app, push and SMS.",
-    metric: "500+ retailers, zero access-control incidents",
+    metric: "Multi-tenant core for 500+ retailers",
+    cover: "/images/projects/cyncly/companies-list.webp",
+    coverPosition: "30% 30%",
+    role: "Senior Frontend Engineer, York IE",
+    tracks: [
+      "Company switching across tenants",
+      "Add user, add role and add location wizards",
+      "Role-based access control",
+      "Plugin registry and plugin configuration",
+      "Multi-channel notifications: in-app, push and SMS",
+      "User account management",
+    ],
+    study: {
+      problem:
+        "A flooring marketplace needed one core platform for its retailers: each with their own users, roles and locations, all managed from one product, with access that stays inside the right company.",
+      built:
+        "Homebase, the multi-tenant core. Admins switch between companies, add users, roles and locations through guided wizards, and configure plugins from a registry. Role-based access control decides what each user can see and do, and notifications reach people in-app, by push and by SMS.",
+      architecture:
+        "React, Next.js and TypeScript with Redux for client state. Access is driven by roles rather than per-screen special cases, plugins are registered centrally and configured per company in JSON, and notification triggers are configured once and delivered across channels.",
+      outcome: "A multi-tenant core platform serving 500+ retailers.",
+    },
     image: "",
     carouselImages: [
       "/images/projects/cyncly/companies-list.jpg",
@@ -316,7 +385,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Cozy Skies",
     blurb: "Outdoor sleep brand launched from scratch: product, brand and Shopify store.",
-    summary: "A done-for-you launch for Cozy Skies, a UK outdoor brand built around one hero product, the Solace sleeping bag. I sourced the product, created the brand identity (a moon-and-tent mark in deep teal with burnt-orange accents) and designed and built the Shopify store. The homepage sells one product the way campers weigh it up: a sunset-campsite hero, spec-led benefits, a comparison table against ordinary sleeping bags, use cases from wild camping to motorhomes, reviews, a Trail Stories blog and newsletter sign-up.",
+    summary: "A done-for-you launch for Cozy Skies, a UK outdoor brand built around one hero product, the Solace sleeping bag. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. The homepage sells one product the way campers weigh it up: a sunset-campsite hero, spec-led benefits, a comparison table against ordinary sleeping bags, use cases from wild camping to motorhomes, reviews, a Trail Stories blog and newsletter sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -337,7 +406,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Snatched",
     blurb: "At-home beauty-tech brand: device range, salon-inspired identity and store.",
-    summary: "A done-for-you launch for Snatched, a UK beauty brand selling LED, EMS and facial devices for use at home. I sourced the device range, built a calm, salon-inspired identity (a fine serif wordmark on warm taupe) and designed and built the Shopify store. The store leads with benefits and trust: a 'Lift, Sculpt, Glow' hero, a trust bar, a product grid with pricing and reviews, research-backed stats on facial EMS, explainers on LED, EMS and radio-frequency technology, a Journal of at-home routines and newsletter sign-up.",
+    summary: "A done-for-you launch for Snatched, a UK beauty brand selling LED, EMS and facial devices for use at home. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. The store leads with benefits and trust: a 'Lift, Sculpt, Glow' hero, a trust bar, a product grid with pricing and reviews, research-backed stats on facial EMS, explainers on LED, EMS and radio-frequency technology, a Journal of at-home routines and newsletter sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -358,7 +427,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Soluna Wellness",
     blurb: "Premium sauna and cold-plunge brand, designed for high-ticket buying.",
-    summary: "A done-for-you launch for Soluna Wellness, a UK brand selling saunas, ice baths and accessories. I sourced the range, created the brand identity (a line-drawn lotus mark with a black-and-natural-wood look) and designed and built the Shopify store. Because these are considered purchases, the store does the explaining: a full-width hero carousel, spotlights on the Halo outdoor sauna and the cold-plunge ritual, tabbed benefits for performance, health and longevity, collection carousels, customer results, a maintenance FAQ, buying guides in the Journal and newsletter sign-up.",
+    summary: "A done-for-you launch for Soluna Wellness, a UK brand selling saunas, ice baths and accessories. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. Because these are considered purchases, the store does the explaining: a full-width hero carousel, spotlights on the Halo outdoor sauna and the cold-plunge ritual, tabbed benefits for performance, health and longevity, collection carousels, customer results, a maintenance FAQ, buying guides in the Journal and newsletter sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -381,7 +450,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Kovari",
     blurb: "Science-led haircare brand: range, identity and storefront.",
-    summary: "A done-for-you launch for Kovari, a London haircare brand with cleanse, nourish and styling ranges. I sourced the products, created the identity (an italic-and-bold wordmark on sand and charcoal) and designed and built the Shopify store. Glassy best-seller cards sit on an editorial hero, followed by product spotlights, a 'haircare by the numbers' stats band, eco-packaging and ingredients messaging, a Shop Haircare range with prices, the Styling Atelier, the Kovari Edit journal and an Insider Updates sign-up.",
+    summary: "A done-for-you launch for Kovari, a London haircare brand with cleanse, nourish and styling ranges. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. Glassy best-seller cards sit on an editorial hero, followed by product spotlights, a 'haircare by the numbers' stats band, eco-packaging and ingredients messaging, a Shop Haircare range with prices, the Styling Atelier, the Kovari Edit journal and an Insider Updates sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -403,7 +472,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Dear Glow",
     blurb: "Everyday beauty tools brand: brushes, sponges and organisers.",
-    summary: "A done-for-you launch for Dear Glow, a skin and beauty brand selling makeup brushes, blending sponges and beauty storage. I sourced the range, created the identity (a bold wordmark with a pink comma, on blush pink) and designed and built the Shopify store. Product-led sections carry the store: a best-seller card for the 14-piece brush set, an 'Organised' feature for beauty storage, the Dear Glow difference, the Dear Glow Edit categories and journal, reviews and a 'Stay in the Glow' sign-up.",
+    summary: "A done-for-you launch for Dear Glow, a skin and beauty brand selling makeup brushes, blending sponges and beauty storage. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. Product-led sections carry the store: a best-seller card for the 14-piece brush set, an 'Organised' feature for beauty storage, the Dear Glow difference, the Dear Glow Edit categories and journal, reviews and a 'Stay in the Glow' sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -423,7 +492,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Elqorin",
     blurb: "Home sauna and cold-plunge brand with contrast-therapy bundles.",
-    summary: "A done-for-you launch for Elqorin, a UK recovery brand selling home saunas, cold plunges and heat-plus-cold contrast bundles. I sourced the range, created the identity (a black block wordmark with an editorial serif on cream and black) and designed and built the Shopify store. It tells a problem-to-solution story, then presents three priced paths (Saunas, Cold Plunges and Heat + Cold), the delivery, warranty and returns standard, accessories, an FAQ on electrics, space and installation, and a direct line to an expert.",
+    summary: "A done-for-you launch for Elqorin, a UK recovery brand selling home saunas, cold plunges and heat-plus-cold contrast bundles. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. It tells a problem-to-solution story, then presents three priced paths (Saunas, Cold Plunges and Heat + Cold), the delivery, warranty and returns standard, accessories, an FAQ on electrics, space and installation, and a direct line to an expert.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -444,7 +513,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Consent in Practice",
     blurb: "Brand and Shopify site for a UK consent and safeguarding training consultancy.",
-    summary: "Consent in Practice is a UK consultancy that trains organisations on consent, safeguarding and digital harm. I created the brand identity (the 'cip' mark in black and periwinkle blue) and designed and built a Shopify site that turns a sensitive, specialist service into a clear offer for HR teams, leaders and universities. The site walks buyers from the problem to the business case and return on prevention, through five programmes from a 90-minute workshop to an annual partnership, the research-led methodology, case studies and founder Holly Kent's story, with consultation calls to action throughout.",
+    summary: "Consent in Practice is a UK consultancy that trains organisations on consent, safeguarding and digital harm. Delivered through my studio, The Hive Digital: brand identity and the Shopify site design and build. The site walks buyers from the problem to the business case and return on prevention, through five programmes from a 90-minute workshop to an annual partnership, the research-led methodology, case studies and founder Holly Kent's story, with consultation calls to action throughout.",
     tags: [
       "Brand identity",
       "UI design",
@@ -471,7 +540,7 @@ export const SHOPIFY_STORES = [
   {
     name: "PJ Soul",
     blurb: "Matching family pyjama brand, launched for Christmas.",
-    summary: "A done-for-you launch for PJ Soul, a family sleepwear brand selling matching Christmas pyjama sets. I sourced the range, created the identity (a serif PJ monogram on midnight navy and cream, with a falling-snow motif) and designed and built the Shopify store around the gifting season: a 'Christmas Starts Here' hero, a collection grid with Luxe, Sale and Premium badges, Christmas cards for one-at-a-time gifting, signature pyjama features, reviews, gift guides in the journal, a sale countdown and the Cosy Club loyalty programme.",
+    summary: "A done-for-you launch for PJ Soul, a family sleepwear brand selling matching Christmas pyjama sets. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. The store is built around the gifting season: a 'Christmas Starts Here' hero, a collection grid with Luxe, Sale and Premium badges, Christmas cards for one-at-a-time gifting, signature pyjama features, reviews, gift guides in the journal, a sale countdown and the Cosy Club loyalty programme.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -494,7 +563,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Milo & Mae",
     blurb: "Parenting brand built around one smart product, the SmartTemp thermos.",
-    summary: "A done-for-you launch for Milo & Mae, a parenting brand built around the SmartTemp thermos, which shows the water temperature on its lid for feeds on the go. I sourced the product, created the identity (a swirl mark on soft sage and cream) and designed and built the Shopify store. The pages follow a parent's day: an oversized SMART TEMP hero, 'Ready when you are' use cases for days out, parent reviews, Helpful Reads feeding guides, support cards for FAQs and contact, and a newsletter offer.",
+    summary: "A done-for-you launch for Milo & Mae, a parenting brand built around the SmartTemp thermos, which shows the water temperature on its lid for feeds on the go. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. The pages follow a parent's day: an oversized SMART TEMP hero, 'Ready when you are' use cases for days out, parent reviews, Helpful Reads feeding guides, support cards for FAQs and contact, and a newsletter offer.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -515,7 +584,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Fig & Mouse",
     blurb: "Design-led dog walking accessories: product, brand and store.",
-    summary: "A done-for-you launch for Fig & Mouse, a pet brand selling printed harnesses, leashes, poop-bag holders and bundled walk sets. I sourced the products, created the identity (an FM monogram and editorial serif in chocolate brown and sand) and designed and built the Shopify store. A 'Walk with purpose' hero leads into shop-the-essentials collections, the comfort research behind the harness design, brand values, pet-parent reviews, a Giving Back section supporting the Pug Nation LA rescue, a journal and newsletter sign-up.",
+    summary: "A done-for-you launch for Fig & Mouse, a pet brand selling printed harnesses, leashes, poop-bag holders and bundled walk sets. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. A 'Walk with purpose' hero leads into shop-the-essentials collections, the comfort research behind the harness design, brand values, pet-parent reviews, a Giving Back section supporting the Pug Nation LA rescue, a journal and newsletter sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -536,7 +605,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Albies",
     blurb: "Dog walking and visibility gear brand: products, brand and store.",
-    summary: "A done-for-you launch for Albies Pet Supplies, a dog gear brand selling LED harnesses, collars and leads. I sourced the products, created the identity (an illustrated dog-head crest on sage green and stone) and designed and built the Shopify store. The range is organised around three needs, Control, Freedom and Safety, supported by research-led trust stats, an Everyday Essentials carousel, reviews, the brand and shelter-support story, a Dog Walking Edit journal and delivery and support perks with newsletter sign-up.",
+    summary: "A done-for-you launch for Albies Pet Supplies, a dog gear brand selling LED harnesses, collars and leads. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. The range is organised around three needs, Control, Freedom and Safety, supported by research-led trust stats, an Everyday Essentials carousel, reviews, the brand and shelter-support story, a Dog Walking Edit journal and delivery and support perks with newsletter sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -558,7 +627,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Scented Drive",
     blurb: "Car fragrance brand built around an automatic vent diffuser.",
-    summary: "A done-for-you launch for ScentedDrive, a UK car fragrance brand selling an automatic vent diffuser with refillable scents. I sourced the diffuser and scent range, created the identity (an SD monogram on warm grey and stone) and designed and built the Shopify store. A 'Freshness that drives with you' hero leads into product features, six scents from Lavender to White Tea, a three-step installation guide, refills, an FAQ on charging and usage, customer photo reviews, a journal and newsletter sign-up.",
+    summary: "A done-for-you launch for ScentedDrive, a UK car fragrance brand selling an automatic vent diffuser with refillable scents. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. A 'Freshness that drives with you' hero leads into product features, six scents from Lavender to White Tea, a three-step installation guide, refills, an FAQ on charging and usage, customer photo reviews, a journal and newsletter sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -581,7 +650,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Oryn Wellness",
     blurb: "Sauna and recovery brand, designed around the home ritual.",
-    summary: "A done-for-you launch for Oryn Wellness, a UK brand selling saunas, ice baths and recovery accessories. I sourced the range, created the identity (a stacked O-Y-N wordmark on stone grey and black) and designed and built the Shopify store. A 'Reset, at your own pace' hero carousel opens onto ice bath, sauna and accessory categories, session guidance on temperature, duration and sizing, a setup-and-care FAQ, a 'Designed Around Your Ritual' carousel featuring the Arca sauna and Fjord cold plunge, the Oryn Journal and a founder note.",
+    summary: "A done-for-you launch for Oryn Wellness, a UK brand selling saunas, ice baths and recovery accessories. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. A 'Reset, at your own pace' hero carousel opens onto ice bath, sauna and accessory categories, session guidance on temperature, duration and sizing, a setup-and-care FAQ, a 'Designed Around Your Ritual' carousel featuring the Arca sauna and Fjord cold plunge, the Oryn Journal and a founder note.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -601,7 +670,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Elevate Her",
     blurb: "Women's supplement brand: range, identity and store.",
-    summary: "A done-for-you launch for Elevate Her Supplements, a women's health brand selling vitamins, collagen, gut-health and menopause support. I sourced the range, created the identity (a lowercase wordmark with a bold 'her', in soft nude tones) and designed and built the Shopify store. Ingredient education leads (B12, magnesium, D3, omega, probiotics and collagen), followed by customer favourites such as GI-Balance+ and MenoEase, the 'Shine From Within' mission, collections, a founder story rooted in one woman's postnatal journey, a journal and newsletter sign-up.",
+    summary: "A done-for-you launch for Elevate Her Supplements, a women's health brand selling vitamins, collagen, gut-health and menopause support. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. Ingredient education leads (B12, magnesium, D3, omega, probiotics and collagen), followed by customer favourites such as GI-Balance+ and MenoEase, the 'Shine From Within' mission, collections, a founder story rooted in one woman's postnatal journey, a journal and newsletter sign-up.",
     tags: [
       "Product sourcing",
       "Brand identity",
@@ -622,7 +691,7 @@ export const SHOPIFY_STORES = [
   {
     name: "Avor Wellness",
     blurb: "Home sauna and portable ice bath brand for UK buyers.",
-    summary: "A done-for-you launch for Avor Wellness, a UK home recovery brand selling infrared saunas and portable ice baths. I sourced the range, created the identity (a script 'A' mark in navy on warm off-white) and designed and built the Shopify store. A 'Your Space to Unwind' hero with a returns, delivery and quality trust bar leads into infrared research stats, priced products (the Flow ice bath and the Halo and Haven saunas), sauna benefits, reviews, an FAQ on heating, maintenance and running costs, a journal and a Talk to an Expert route.",
+    summary: "A done-for-you launch for Avor Wellness, a UK home recovery brand selling infrared saunas and portable ice baths. Delivered through my studio, The Hive Digital: product sourcing, brand identity, and the Shopify store design and build. A 'Your Space to Unwind' hero with a returns, delivery and quality trust bar leads into infrared research stats, priced products (the Flow ice bath and the Halo and Haven saunas), sauna benefits, reviews, an FAQ on heating, maintenance and running costs, a journal and a Talk to an Expert route.",
     tags: [
       "Product sourcing",
       "Brand identity",

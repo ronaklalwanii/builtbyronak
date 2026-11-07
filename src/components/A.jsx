@@ -34,7 +34,7 @@ export function Roll({ children, className = '', ...props }) {
   )
 }
 
-// Primary button: a slash of whiskey floods the label.
+// Primary button: an ink block slides up from the base and floods the label.
 export function Button({ children, className = '', ...props }) {
   return (
     <A className={`btn ${className}`} {...props}>

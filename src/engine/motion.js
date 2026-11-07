@@ -10,8 +10,8 @@ export { gsap, ScrollTrigger, SplitText }
 export const reduced = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-// The strike: arrive fast, stop dead.
-export const EASE = 'power4.out'
+// Sleeve motion: slide out fast, settle softly.
+export const EASE = 'power3.out'
 
 let lenis = null
 export const getLenis = () => lenis
@@ -34,7 +34,7 @@ export function scrollToTarget(target, immediate = false) {
 // Intro gate: page choreography waits for the loader or the route curtain.
 const gate = { promise: Promise.resolve(), resolve: () => {} }
 export const intro = {
-  late: false,
+  navigated: false, // true after the first client-side route change
   wait: () => gate.promise,
   reset() {
     gate.promise = new Promise((r) => (gate.resolve = r))
@@ -68,6 +68,7 @@ export function revealLines(el, vars = {}) {
   SplitText.create(el, {
     type: 'lines',
     mask: 'lines',
+    aria: 'none',
     autoSplit: true,
     onSplit(self) {
       return gsap.from(self.lines, {
@@ -82,21 +83,12 @@ export function revealLines(el, vars = {}) {
   })
 }
 
-// Slash wipe: a diagonal edge crosses the element (clip-path only).
-const poly = (mode, p) =>
-  mode === 'in'
-    ? `polygon(0 0, ${p + 15}% 0, ${p - 15}% 100%, 0 100%)`
-    : `polygon(${p + 15}% 0, 100% 0, 100% 100%, ${p - 15}% 100%)`
-export const slashSet = (el, mode, covered) => {
-  el.style.clipPath = poly(mode, covered ? 115 : -15)
-}
-export function slash(el, mode, vars = {}) {
-  const o = { p: -15 }
-  return gsap.to(o, {
-    p: 115,
-    duration: 0.8,
-    ease: 'power4.inOut',
-    ...vars,
-    onUpdate: () => (el.style.clipPath = poly(mode, o.p)),
-  })
+// Panel wipe for route changes (clip-path only): the panel rises over the
+// page, then keeps going and leaves through the top.
+export const wipe = {
+  hide: (el) => gsap.set(el, { clipPath: 'inset(100% 0% 0% 0%)' }),
+  cover: (el, vars = {}) =>
+    gsap.fromTo(el, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.55, ease: 'power3.inOut', ...vars }),
+  reveal: (el, vars = {}) =>
+    gsap.fromTo(el, { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 100% 0%)', duration: 0.6, ease: 'power3.inOut', ...vars }),
 }

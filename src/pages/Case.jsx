@@ -1,48 +1,66 @@
-import { caseBySlug, nextCase, CLASSES } from '../data/work'
-import { usePage, gsap, ScrollTrigger, SplitText, intro, revealLines, reduced, EASE } from '../engine/motion'
+import { caseBySlug, nextCase } from '../data/work'
+import { usePage, gsap, SplitText, intro, revealLines, reduced, EASE } from '../engine/motion'
 import { A, Button } from '../components/A'
+import Sleeve from '../components/Sleeve'
 import NotFound from './NotFound'
 
-const FULL = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
-const CLOSED = 'polygon(0 0, 0 0, 0 100%, 0 100%)'
+const OPEN = 'inset(0% 0% 0% 0%)'
+const SHUT = 'inset(0% 0% 100% 0%)'
 
-// Rhythm for the screen stack: the first is full width, then two side by side,
-// then one full, and so on. A lone last screen goes full width.
+// Rhythm for the screen stack: first full width, then two side by side, then
+// one full, and so on. A lone last screen goes full width.
 const half = (i, n) => i > 0 && (i - 1) % 3 !== 2 && !(i === n - 1 && (i - 1) % 3 === 0)
+
+const NOTES = [
+  ['problem', 'Problem'],
+  ['built', 'What I built'],
+  ['architecture', 'Architecture and stack'],
+  ['outcome', 'Outcome'],
+]
 
 export default function Case({ slug }) {
   const c = caseBySlug(slug)
   const ref = usePage((root) => {
     if (!c) return
     root.querySelectorAll('[data-lines]').forEach((el) => revealLines(el))
-    if (reduced() || intro.late) return
-    const title = SplitText.create(root.querySelector('.case__title'), { type: 'chars', mask: 'chars' })
-    gsap.set(title.chars, { yPercent: 110 })
-    const first = root.querySelector('.shot')
-    gsap.set(first, { clipPath: CLOSED })
-    let alive = true
-    intro.wait().then(() => {
-      if (!alive) return
-      gsap
-        .timeline({ defaults: { ease: EASE } })
-        .to(title.chars, { yPercent: 0, duration: 1, stagger: 0.025 }, 0)
-        .to(first, { clipPath: FULL, duration: 1 }, 0.1)
-    })
-    root.querySelectorAll('.shot').forEach((s, i) => {
-      if (i === 0) return
+    if (reduced()) return
+
+    let stop
+    // Record out: when the case opens from the index, the sleeve is already in
+    // place and the record slides out of it behind the transition panel.
+    // On a direct load there is nothing to hide, so it simply stays out.
+    if (intro.navigated) {
+      const sleeve = root.querySelector('.case__art .sleeve')
+      const rest = parseFloat(getComputedStyle(sleeve).getPropertyValue('--out')) || 0.34
+      const title = SplitText.create(root.querySelector('.case__title'), { type: 'chars', mask: 'chars', aria: 'none' })
+      gsap.set(sleeve, { '--out': 0 })
+      gsap.set(title.chars, { yPercent: 110 })
+      let alive = true
+      intro.wait().then(() => {
+        if (!alive) return
+        gsap
+          .timeline({ defaults: { ease: EASE } })
+          .to(title.chars, { yPercent: 0, duration: 0.9, stagger: 0.025 }, 0)
+          .to(sleeve, { '--out': rest, duration: 1.5 }, 0.2)
+      })
+      stop = () => (alive = false)
+    }
+
+    root.querySelectorAll('.shot').forEach((s) => {
       gsap.fromTo(
         s,
-        { clipPath: CLOSED },
-        { clipPath: FULL, duration: 1.1, ease: EASE, scrollTrigger: { trigger: s, start: 'top 88%', once: true } },
+        { clipPath: SHUT },
+        { clipPath: OPEN, duration: 1.1, ease: EASE, scrollTrigger: { trigger: s, start: 'top 88%', once: true } },
       )
     })
-    return () => (alive = false)
+    return () => stop?.()
   }, [slug])
 
   if (!c) return <NotFound />
   const next = nextCase(slug)
-  const weight = CLASSES.find((k) => k.name === c.service)?.weight
   const n = c.images.length
+  const isApp = c.kind === 'app'
+  const tracks = isApp ? c.tracks : c.images.map((im) => im.caption)
 
   const shot = (im, i) => (
     <figure className={`shot${half(i, n) ? ' shot--half' : ''}`} key={im.src}>
@@ -53,8 +71,7 @@ export default function Case({ slug }) {
         width={im.w}
         height={im.h}
         alt={`${c.name}: ${im.caption}`}
-        loading={i === 0 ? 'eager' : 'lazy'}
-        fetchPriority={i === 0 ? 'high' : undefined}
+        loading="lazy"
         decoding="async"
       />
       <figcaption>{im.caption}</figcaption>
@@ -64,70 +81,88 @@ export default function Case({ slug }) {
   return (
     <article className="case" ref={ref}>
       <header className="case__head">
-        <A href="/#work" className="case__back">
-          <span aria-hidden="true">←</span> All work
-        </A>
-        <h1 className="case__title">{c.name}</h1>
-        <dl className="case__meta">
-          <div>
-            <dt>Sector</dt>
-            <dd>{c.sector}</dd>
-          </div>
-          <div>
-            <dt>Scope</dt>
-            <dd>{c.tags.join(', ')}</dd>
-          </div>
-          <div>
-            <dt>Weight class</dt>
-            <dd>
-              {weight}, {c.service.toLowerCase()}
-            </dd>
-          </div>
-          <div>
-            <dt>Shown</dt>
-            <dd>{c.images.length} screens</dd>
-          </div>
-        </dl>
+        <div className="case__id">
+          <A href="/#work" className="case__back">
+            <span aria-hidden="true">←</span> All work
+          </A>
+          <h1 className="case__title">{c.name}</h1>
+          <p className="case__sector">{c.sector}</p>
+        </div>
+        <div className="case__art">
+          <Sleeve cover={c.cover} alt={`${c.name}: ${c.cover.caption}`} eager sizes="(min-width: 1024px) 46vw, 92vw" />
+        </div>
       </header>
 
-      <div className="case__shots case__shots--first">
-        {c.images.slice(0, 1).map((im, i) => shot(im, i))}
-      </div>
-
-      <section className="case__intro" aria-label="About this project">
-        <p className="case__lead" data-lines>
-          {c.blurb}
-        </p>
-        <p data-lines>{c.summary}</p>
-        {c.result && (
-          <p className="case__flow">
-            <b>Result</b>
-            {c.result}
-          </p>
-        )}
-        <p className="case__flow">
-          <b>Screens, in order</b>
-          {c.images.map((im) => im.caption).join(', ')}
-        </p>
-        {c.links?.length > 0 && (
-          <p className="case__links">
-            {c.links.map((l) => (
-              <A key={l.url} href={l.url}>
-                {l.label}
-              </A>
+      <div className="case__body">
+        {isApp ? (
+          <div className="notes">
+            {NOTES.map(([key, label]) => (
+              <section className="note" key={key}>
+                <h2>{label}</h2>
+                <p data-lines>{c.study[key]}</p>
+              </section>
             ))}
-          </p>
+          </div>
+        ) : (
+          <div className="notes">
+            <section className="note">
+              <h2>The build</h2>
+              <p data-lines>{c.summary}</p>
+            </section>
+          </div>
         )}
-      </section>
 
-      <div className="case__shots">
-        {c.images.slice(1).map((im, i) => shot(im, i + 1))}
+        <div className="liner">
+          <section>
+            <h2 className="label">Tracklist</h2>
+            <ol className="tracks tracks--full">
+              {tracks.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ol>
+          </section>
+          <section>
+            <h2 className="label">Credits</h2>
+            <dl className="credits">
+              <dt>Sector</dt>
+              <dd>{c.sector}</dd>
+              <dt>{isApp ? 'Role' : 'Delivered by'}</dt>
+              <dd>{c.role}</dd>
+              <dt>{isApp ? 'Stack' : 'Scope'}</dt>
+              <dd>{c.tags.join(', ')}</dd>
+              {c.outcome && (
+                <>
+                  <dt>Outcome</dt>
+                  <dd>{c.outcome}</dd>
+                </>
+              )}
+              {c.links?.length > 0 && (
+                <>
+                  <dt>Live demos</dt>
+                  <dd className="credits__links">
+                    {c.links.map((l) => (
+                      <A key={l.url} href={l.url}>
+                        {l.label}
+                      </A>
+                    ))}
+                  </dd>
+                </>
+              )}
+            </dl>
+          </section>
+        </div>
       </div>
+
+      <div className="case__shots">{c.images.map((im, i) => shot(im, i))}</div>
 
       <nav className="case__next" aria-label="Next project">
-        <p>Next bout</p>
+        <p className="label">Next on {isApp ? 'Side A' : 'Side B'}</p>
         <A href={next.href} className="case__nextlink">
-          <span className="roll"><span className="roll__in" data-text={next.name}>{next.name}</span></span>
+          <span className="roll">
+            <span className="roll__in" data-text={next.name}>
+              {next.name}
+            </span>
+          </span>
         </A>
         <Button href="/#contact">Start a project</Button>
       </nav>

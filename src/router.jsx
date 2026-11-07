@@ -9,7 +9,7 @@ export const useRouter = () => useContext(Ctx)
 
 const labelFor = (path) => {
   const m = path.match(/^\/work\/([^/]+)/)
-  return (m && caseBySlug(m[1])?.name) || (path === '/' ? 'Ronak Lalwani' : 'Out of range')
+  return (m && caseBySlug(m[1])?.name) || (path === '/' ? 'Ronak Lalwani' : 'Page not found')
 }
 
 function applyMeta(path) {
@@ -42,6 +42,7 @@ export function RouterProvider({ initialPath, children }) {
     }
     if (busy.current) return
     busy.current = true
+    intro.navigated = true
     const swap = () => {
       flushSync(() => setPath(next))
       pathRef.current = next

@@ -1,156 +1,157 @@
 import { SHOPIFY_CASES, APP_CASES, ALSO } from '../data/work'
-import { usePage, gsap, ScrollTrigger, getLenis, reduced, EASE } from '../engine/motion'
+import { usePage, gsap, ScrollTrigger, revealLines, reduced, EASE } from '../engine/motion'
 import { A } from '../components/A'
+import Sleeve from '../components/Sleeve'
 
-function Row({ c }) {
+function Album({ c, i }) {
+  return (
+    <article className={`album ${i % 2 ? 'album--r' : ''}`}>
+      <A href={c.href} className="album__cover" aria-hidden="true" tabIndex={-1}>
+        <span className="album__no">A{i + 1}</span>
+        <Sleeve cover={c.cover} sizes="(min-width: 1024px) 46vw, 92vw" />
+      </A>
+      <div className="album__notes">
+        <h4 className="album__title">{c.name}</h4>
+        <p className="album__sector">{c.sector}</p>
+        <div className="album__cols">
+          <div>
+            <p className="label">Tracklist</p>
+            <ol className="tracks">
+              {c.tracks.slice(0, 4).map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ol>
+          </div>
+          <div>
+            <p className="label">Credits</p>
+            <dl className="credits">
+              <dt>Sector</dt>
+              <dd>{c.sector}</dd>
+              <dt>Role</dt>
+              <dd>{c.role}</dd>
+              <dt>Stack</dt>
+              <dd>{c.tags.join(', ')}</dd>
+              <dt>Outcome</dt>
+              <dd>{c.outcome}</dd>
+            </dl>
+          </div>
+        </div>
+        <A href={c.href} className="more">
+          Read the {c.name} case study <span aria-hidden="true">→</span>
+        </A>
+      </div>
+    </article>
+  )
+}
+
+function Spine({ c, i }) {
   return (
     <li>
-      <A href={c.href} className="row" data-img={c.images[0].src}>
-        <span className="row__line" aria-hidden="true" />
-        <span className="row__mask">
-          <span className="row__name">{c.name}</span>
-        </span>
-        <span className="row__sector">{c.sector}</span>
-        <span className="row__scope">{c.hook}</span>
+      <A href={c.href} className="spine">
+        <Sleeve cover={c.cover} sizes="(min-width: 1100px) 18vw, (min-width: 700px) 24vw, 46vw" disc={false} />
+        <span className="spine__no">B{i + 1}</span>
+        <span className="spine__name">{c.name}</span>
+        <span className="spine__sector">{c.sector}</span>
       </A>
     </li>
   )
 }
 
-// Striking range: the index. On a mouse, a preview follows the pointer and
-// leans with its speed; on touch the row in the middle of the screen lights up.
 export default function WorkIndex() {
   const ref = usePage((root) => {
-    const rows = [...root.querySelectorAll('.row')]
+    root.querySelectorAll('[data-lines]').forEach((el) => revealLines(el))
     const motion = !reduced()
 
     if (motion) {
-      gsap.set(root.querySelectorAll('.row__name'), { yPercent: 105 })
-      gsap.set(root.querySelectorAll('.row__line'), { scaleX: 0 })
-      ScrollTrigger.batch(rows, {
-        start: 'top 93%',
+      const albums = [...root.querySelectorAll('.album')]
+      albums.forEach((a) => {
+        const art = a.querySelector('.sleeve')
+        gsap.from(art, {
+          '--out': 0,
+          xPercent: -6,
+          autoAlpha: 0,
+          duration: 1.1,
+          ease: EASE,
+          scrollTrigger: { trigger: a, start: 'top 80%', once: true },
+        })
+      })
+      const spines = [...root.querySelectorAll('.spine')]
+      gsap.set(spines, { autoAlpha: 0, y: 24 })
+      ScrollTrigger.batch(spines, {
+        start: 'top 94%',
         once: true,
-        onEnter: (batch) => {
-          gsap.to(batch.map((r) => r.querySelector('.row__name')), {
-            yPercent: 0, duration: 0.9, stagger: 0.05, ease: EASE,
-          })
-          gsap.to(batch.map((r) => r.querySelector('.row__line')), {
-            scaleX: 1, duration: 1.1, stagger: 0.05, ease: EASE,
-          })
-        },
+        onEnter: (b) => gsap.to(b, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.05, ease: EASE }),
       })
     }
 
+    // Touch has no hover: the sleeve nearest the middle of the screen resolves
+    // to full colour, so every cover is seen both ways.
     const mm = gsap.matchMedia()
-    mm.add('(hover: hover) and (pointer: fine)', () => {
-      const prev = root.querySelector('.preview')
-      const img = prev.querySelector('img')
-      gsap.set(prev, { xPercent: 0, autoAlpha: 0, scale: 0.9 })
-      const xTo = gsap.quickTo(prev, 'x', { duration: 0.6, ease: 'power3.out' })
-      const yTo = gsap.quickTo(prev, 'y', { duration: 0.6, ease: 'power3.out' })
-      const rTo = gsap.quickTo(prev, 'rotation', { duration: 0.7, ease: 'power3.out' })
-      let current = null
-      let lastX = 0
-      let px = 0
-      let py = 0
-      let settle
-
-      const show = (row) => {
-        if (row === current) return
-        current = row
-        if (row) {
-          if (img.getAttribute('src') !== row.dataset.img) img.src = row.dataset.img
-          gsap.to(prev, { autoAlpha: 1, scale: 1, duration: 0.4, ease: EASE, overwrite: 'auto' })
-        } else {
-          gsap.to(prev, { autoAlpha: 0, scale: 0.9, duration: 0.25, ease: 'power2.in', overwrite: 'auto' })
-        }
-      }
-      const move = (e) => {
-        px = e.clientX
-        py = e.clientY
-        xTo(px + 36)
-        yTo(py - 120)
-        rTo(gsap.utils.clamp(-10, 10, (px - lastX) * 0.5))
-        lastX = px
-        settle?.kill()
-        settle = gsap.delayedCall(0.09, () => rTo(0))
-        show(e.target.closest?.('.row'))
-      }
-      const recheck = () => show(document.elementFromPoint(px, py)?.closest('.row') || null)
-      const focusIn = (e) => {
-        const r = e.target.closest?.('.row')
-        if (!r) return
-        const b = r.getBoundingClientRect()
-        xTo(b.right - 420)
-        yTo(b.top - 40)
-        rTo(0)
-        show(r)
-      }
-      root.addEventListener('pointermove', move)
-      root.addEventListener('pointerleave', () => show(null))
-      root.addEventListener('focusin', focusIn)
-      root.addEventListener('focusout', () => show(null))
-      const st = ScrollTrigger.create({ trigger: root, start: 'top bottom', end: 'bottom top', onUpdate: recheck })
-      return () => {
-        root.removeEventListener('pointermove', move)
-        root.removeEventListener('focusin', focusIn)
-        st.kill()
-      }
-    })
-
-    // Touch: light the row nearest the middle of the screen.
     mm.add('(hover: none)', () => {
-      rows.forEach((r) =>
+      const sleeves = [...root.querySelectorAll('.album__cover, .spine')]
+      const sts = sleeves.map((el) =>
         ScrollTrigger.create({
-          trigger: r,
-          start: 'top 58%',
-          end: 'bottom 58%',
-          onToggle: (s) => r.classList.toggle('is-lit', s.isActive),
+          trigger: el,
+          start: 'top 62%',
+          end: 'bottom 62%',
+          onToggle: (s) => el.classList.toggle('is-lit', s.isActive),
         }),
       )
+      return () => sts.forEach((s) => s.kill())
     })
     return () => mm.revert()
   }, [])
 
   return (
     <section className="work" id="work" ref={ref}>
-      <header className="sec-head">
-        <h2>
-          Work <sup>{SHOPIFY_CASES.length + APP_CASES.length}</sup>
-        </h2>
-        <p className="sec-head__note">
-          Fifteen Shopify stores for UK brands, and the apps behind healthcare, legal and retail teams. Every one built by me.
+      <header className="work__head">
+        <h2>Work</h2>
+        <p data-lines>
+          Side A: web apps and platforms for healthcare, legal and retail teams. Side B: fifteen Shopify stores, delivered
+          through my studio, The Hive Digital.
         </p>
       </header>
 
-      <h3 className="grp">Shopify stores</h3>
-      <ol className="rows">
-        {SHOPIFY_CASES.map((c) => (
-          <Row key={c.slug} c={c} />
+      <div className="side side--a">
+        <h3 className="side__label">
+          <span className="side__glyph" aria-hidden="true">
+            A
+          </span>
+          Side A · Apps and platforms
+        </h3>
+        {APP_CASES.map((c, i) => (
+          <Album key={c.slug} c={c} i={i} />
         ))}
-      </ol>
 
-      <h3 className="grp">Apps and platforms</h3>
-      <ol className="rows">
-        {APP_CASES.map((c) => (
-          <Row key={c.slug} c={c} />
-        ))}
-        {ALSO.map((a) => (
-          <li key={a.name}>
-            <div className="row row--static">
-              <span className="row__line" aria-hidden="true" />
-              <span className="row__mask">
-                <span className="row__name">{a.name}</span>
-              </span>
-              <span className="row__sector">{a.sector}</span>
-              <span className="row__scope">{a.tags.slice(0, 3).join(', ')}</span>
-            </div>
-          </li>
-        ))}
-      </ol>
+        <div className="also">
+          <p className="label">Also recorded</p>
+          <ul>
+            {ALSO.map((a) => (
+              <li key={a.name}>
+                <h4>{a.name}</h4>
+                <p>{a.description}</p>
+                <p className="also__meta">
+                  {a.sector} · {a.tags.join(', ')}
+                </p>
+                <p className="also__meta">{a.metric}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
 
-      <div className="preview" aria-hidden="true">
-        <img alt="" width="1280" height="703" decoding="async" />
+      <div className="side side--b" id="shopify">
+        <h3 className="side__label">
+          <span className="side__glyph" aria-hidden="true">
+            B
+          </span>
+          Side B · Shopify stores
+        </h3>
+        <ol className="shelf">
+          {SHOPIFY_CASES.map((c, i) => (
+            <Spine key={c.slug} c={c} i={i} />
+          ))}
+        </ol>
       </div>
     </section>
   )

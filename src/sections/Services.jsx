@@ -1,13 +1,13 @@
-import { CLASSES } from '../data/work'
+import { SERVICES } from '../constants'
 import { usePage, gsap, ScrollTrigger, revealLines, reduced, EASE } from '../engine/motion'
 
-// Services as weight classes: the lightest job first, the heaviest last.
+// Prices stay in SERVICES but are not shown.
 export default function Services() {
   const ref = usePage((root) => {
     root.querySelectorAll('[data-lines]').forEach((el) => revealLines(el))
     if (reduced()) return
-    const items = [...root.querySelectorAll('.class')]
-    gsap.set(items, { autoAlpha: 0, y: 26 })
+    const items = [...root.querySelectorAll('.svc')]
+    gsap.set(items, { autoAlpha: 0, y: 22 })
     ScrollTrigger.batch(items, {
       start: 'top 92%',
       once: true,
@@ -17,21 +17,19 @@ export default function Services() {
 
   return (
     <section className="services" id="services" ref={ref}>
-      <div className="services__side">
+      <header className="services__side">
         <h2>Services</h2>
         <p data-lines>
-          Seven ways to hire me, sorted by weight class: a quick fix is a flyweight, a full store is a heavyweight. Every job is scoped in writing before it starts.
+          Engagements from a one-week audit to a full product build. Every one is scoped and quoted in writing before work
+          starts.
         </p>
-      </div>
-      <ul className="classes">
-        {CLASSES.map((s) => (
-          <li className="class" key={s.name}>
-            <span className="class__weight">{s.weight}</span>
-            <div className="class__body">
-              <h3>{s.name}</h3>
-              <p>{s.short}</p>
-            </div>
-            <span className="class__time">{s.turnaround.split('·')[0].trim()}</span>
+      </header>
+      <ul className="svcs">
+        {SERVICES.map((s) => (
+          <li className="svc" key={s.name}>
+            <h3>{s.name}</h3>
+            <p>{s.short}</p>
+            <span className="svc__time">{s.turnaround}</span>
           </li>
         ))}
       </ul>

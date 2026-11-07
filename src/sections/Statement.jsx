@@ -7,10 +7,13 @@ export default function Statement() {
   return (
     <section className="statement" ref={ref}>
       <p className="statement__text" data-lines>
-        I stay at range, measure the problem, and close in only when the strike will land.
+        Apps that hold up in production: an AI litigation platform that cut case review from about{' '}
+        <mark>40 hours to 6</mark>, a multi-tenant core for <mark>500+ retailers</mark>, and admin templates behind{' '}
+        <mark>2,000+ deployments</mark>.
       </p>
-      <p className="statement__meta" data-lines>
-        Based in Ahmedabad, India. Building for brands in the UK and beyond, and for product teams who need a React engineer without the hiring.
+      <p className="statement__note">
+        Based in Ahmedabad, India (IST). Overlap with UK afternoons and US mornings. Working with startups and product
+        teams in the UK, US and Europe.
       </p>
     </section>
   )

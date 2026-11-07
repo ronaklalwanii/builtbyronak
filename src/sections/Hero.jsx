@@ -1,98 +1,58 @@
+import { useRef, useEffect } from 'react'
 import { PERSONAL } from '../constants'
-import { usePage, gsap, SplitText, intro, reduced, EASE } from '../engine/motion'
-import { subscribe } from '../engine/driver'
-import { Button, Roll } from '../components/A'
-import Haze from '../components/Haze'
+import { APP_CASES } from '../data/work'
+import { intro } from '../engine/motion'
+import { Button, Roll, A } from '../components/A'
+import { Status } from '../components/Hud'
+import Sleeve from '../components/Sleeve'
 
-// Long range: a void, a small figure far away, a wide thin name.
+// First paint is plain HTML plus CSS keyframes, so the headline is real text
+// the moment the page loads. After a client-side route change the keyframes
+// are held (`.is-held`) until the transition panel has left.
 export default function Hero() {
-  const ref = usePage((root) => {
-    if (reduced()) return
-    const q = gsap.utils.selector(root)
+  const ref = useRef(null)
+  useEffect(() => {
+    if (!intro.navigated) return
+    const el = ref.current
+    el.classList.add('is-held')
     let alive = true
-    if (!intro.late) {
-      const split = SplitText.create(q('.hero__name')[0], { type: 'chars', mask: 'chars', charsClass: 'ch' })
-      const sub = SplitText.create(q('.hero__sub')[0], { type: 'lines', mask: 'lines' })
-      gsap.set(split.chars, { yPercent: 112 })
-      gsap.set(sub.lines, { yPercent: 108 })
-      gsap.set(q('.hero__portrait'), { autoAlpha: 0, scale: 0.8 })
-      gsap.set(q('.hero__cta > *'), { autoAlpha: 0, y: 14 })
-      intro.wait().then(() => {
-        if (!alive) return
-        gsap
-          .timeline({ defaults: { ease: EASE } })
-          .to(q('.hero__portrait'), { autoAlpha: 1, scale: 1, duration: 1.4 }, 0)
-          .to(split.chars, { yPercent: 0, duration: 1.15, stagger: 0.035 }, 0.05)
-          .to(sub.lines, { yPercent: 0, duration: 0.9, stagger: 0.08 }, 0.55)
-          .to(q('.hero__cta > *'), { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.08 }, 0.8)
-      })
-    }
-
-    // Stance: the figure bounces on the backbeat, like a fighter on his toes,
-    // and the range-finder brackets around it flash with the same pulse.
-    const fig = q('.hero__portrait')[0]
-    const off = subscribe((d) => {
-      fig.style.translate = `0 ${(-6 * d.beat).toFixed(2)}px`
-      fig.style.setProperty('--beat', d.beat.toFixed(2))
-    })
-
-    // Closing in: the figure rushes the viewer and the name slips away.
-    gsap.to(q('.hero__portrait'), {
-      scale: 5.5,
-      autoAlpha: 0,
-      ease: 'none',
-      scrollTrigger: { trigger: root, start: 'top top', end: 'bottom 25%', scrub: true },
-    })
-    gsap.to(q('.hero__name'), {
-      yPercent: -35,
-      ease: 'none',
-      scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: true },
-    })
+    intro.wait().then(() => alive && el.classList.remove('is-held'))
     return () => {
       alive = false
-      off()
     }
   }, [])
 
   return (
     <section className="hero" ref={ref}>
-      <div className="hero__bg">
-        <Haze />
-      </div>
-      <div className="hero__portrait">
-        <figure className="hero__photo">
-          <img
-            src="/images/ronak-160.webp"
-            srcSet="/images/ronak-160.webp 160w, /images/ronak-320.webp 320w, /images/ronak-640.webp 640w"
-            sizes="(min-width: 1024px) 9vw, 96px"
-            width="640"
-            height="768"
-            alt="Ronak working on a laptop outdoors, hills behind him"
-            fetchPriority="low"
-          />
-        </figure>
-        <span className="hero__finder" aria-hidden="true" />
-        <p className="hero__tag" aria-hidden="true">
-          Subject
-          <br />
-          Long range
-        </p>
-      </div>
-      <h1 className="hero__name">
-        <span>Ronak</span> <span>Lalwani</span>
+      <Status className="status--hero" />
+      <p className="hero__who" style={{ '--d': 0 }}>
+        {PERSONAL.name}
+      </p>
+      <h1 className="hero__h" style={{ '--d': 60 }}>
+        I build <em>React and Next.js apps</em> with AI for startups and SaaS teams. <span>Shopify stores too.</span>
       </h1>
-      <div className="hero__foot">
+      <div className="hero__foot" style={{ '--d': 260 }}>
         <p className="hero__sub">
-          Freelance Shopify and React developer. I work alone, so the person you brief is the person who builds it.
+          Seven years shipping production apps for healthcare, legal and SaaS companies. You work with me directly, from
+          brief to launch.
         </p>
         <div className="hero__cta">
-          {PERSONAL.calendly && (
-            <Button href={PERSONAL.calendly} className="btn--accent">
-              Book a 30 minute call
-            </Button>
-          )}
-          <Roll href={`mailto:${PERSONAL.email}`}>Or email me</Roll>
+          <Button href={`mailto:${PERSONAL.email}`}>Email me</Button>
+          {PERSONAL.calendly && <Roll href={PERSONAL.calendly}>Book a 30-minute call</Roll>}
         </div>
+      </div>
+      <div className="hero__stack">
+        {APP_CASES.map((c, i) => (
+          <A
+            key={c.slug}
+            href={c.href}
+            className={`hero__sleeve hero__sleeve--${i}`}
+            aria-label={`${c.name} case study`}
+            style={{ '--d': 160 + i * 110 }}
+          >
+            <Sleeve cover={c.cover} eager={i === 0} sizes="(min-width: 1024px) 30vw, 70vw" disc={i === 0} />
+          </A>
+        ))}
       </div>
     </section>
   )

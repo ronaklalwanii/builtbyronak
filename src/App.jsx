@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { RouterProvider, useRouter } from './router'
 import { startScroll } from './engine/motion'
-import { startDriver } from './engine/driver'
-import Loader from './components/Loader'
+import { startSpin } from './engine/spin'
 import Curtain from './components/Curtain'
 import Hud from './components/Hud'
 import Home from './pages/Home'
@@ -21,16 +20,14 @@ function Routes() {
 function Shell() {
   useEffect(() => {
     startScroll()
-    startDriver()
+    startSpin()
   }, [])
   return (
     <>
       <a className="skip" href="#main">
         Skip to content
       </a>
-      <Loader />
       <Curtain />
-      <div className="hit" aria-hidden="true" />
       <Hud />
       <main id="main" tabIndex={-1}>
         <Routes />

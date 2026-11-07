@@ -1,7 +1,7 @@
 // Derived content for the index and the case pages. Source of truth stays in
 // ../constants.js; this file only adds what the design needs on top of it:
-// slugs, a one-line sector, image sizes and weight-class labels.
-import { SHOPIFY_STORES, PROJECTS, SERVICES, ALSO_SHIPPED } from '../constants'
+// slugs, a one-line sector, cover crops and image sizes.
+import { SHOPIFY_STORES, PROJECTS, ALSO_SHIPPED } from '../constants'
 import dims from './dims.json'
 
 const slugify = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -9,7 +9,7 @@ const slugify = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/
 const SECTORS = {
   'cozy-skies': 'Outdoor sleep',
   snatched: 'Beauty tech',
-  soluna: 'Sauna and cold plunge',
+  'soluna-wellness': 'Sauna and cold plunge',
   kovari: 'Haircare',
   'dear-glow': 'Beauty tools',
   elqorin: 'Contrast therapy',
@@ -31,7 +31,7 @@ const SECTORS = {
 const HOOKS = {
   'cozy-skies': 'One hero product',
   snatched: 'A device range',
-  soluna: 'High-ticket buying',
+  'soluna-wellness': 'High-ticket buying',
   kovari: 'Three product ranges',
   'dear-glow': 'Best-seller bundle',
   elqorin: 'Three priced paths',
@@ -82,8 +82,9 @@ const shopify = SHOPIFY_STORES.map((s) => {
     summary: s.summary,
     tags: s.tags,
     images: s.images.map((i) => image(i, slug)),
+    cover: { ...image(s.images[0], slug), position: '50% 0%' },
     href: `/work/${slug}`,
-    service: 'Shopify Store Development',
+    role: 'Design and build, The Hive Digital',
   }
 })
 
@@ -100,34 +101,28 @@ const apps = PROJECTS.map((p) => {
     tags: p.tags,
     links: p.links,
     images: p.carouselImages.map((i) => image(i, slug)),
+    cover: { ...image(p.cover, slug), position: p.coverPosition },
     href: `/work/${slug}`,
-    service: 'Admin Panel Build',
+    role: p.role,
+    tracks: p.tracks,
+    study: p.study,
+    outcome: p.study.outcome,
   }
 })
 
-export const CASES = [...shopify, ...apps]
-export const caseBySlug = (slug) => CASES.find((c) => c.slug === slug)
-export const nextCase = (slug) => CASES[(CASES.findIndex((c) => c.slug === slug) + 1) % CASES.length]
+// Side A order: the case studies, strongest first.
+const ORDER = ['medicalease', 'cyncly-homebase', 'react-admin-templates']
+export const APP_CASES = ORDER.map((slug) => apps.find((a) => a.slug === slug))
 export const SHOPIFY_CASES = shopify
-export const APP_CASES = apps
+export const CASES = [...APP_CASES, ...SHOPIFY_CASES]
+export const caseBySlug = (slug) => CASES.find((c) => c.slug === slug)
+// "Next" stays on the same side of the record.
+export const nextCase = (slug) => {
+  const side = caseBySlug(slug).kind === 'app' ? APP_CASES : SHOPIFY_CASES
+  return side[(side.findIndex((c) => c.slug === slug) + 1) % side.length]
+}
 const ALSO_SECTOR = {
   'Healthcare Portal Suite': 'Healthcare portals',
   Laine: 'AI marketing platform',
 }
 export const ALSO = ALSO_SHIPPED.map((a) => ({ ...a, sector: ALSO_SECTOR[a.name] || a.metric }))
-
-// Services framed as weight classes, lightest job to heaviest. The turnaround
-// is the real scope signal; the class is just the framing.
-const CLASS_BY_SERVICE = {
-  'Landing Page': 'Flyweight',
-  'Performance Audit & Fix': 'Bantamweight',
-  'Shopify Theme Development': 'Welterweight',
-  'AI Integration': 'Middleweight',
-  'Admin Panel Build': 'Light heavyweight',
-  'Shopify Store Development': 'Heavyweight',
-  'Monthly Retainer': 'Training camp',
-}
-export const CLASSES = Object.entries(CLASS_BY_SERVICE).map(([name, weight]) => ({
-  weight,
-  ...SERVICES.find((s) => s.name === name),
-}))
