@@ -1,7 +1,7 @@
 import { WORK } from '../constants'
 import { usePage, gsap, revealLines, reduced, EASE } from '../engine/motion'
 
-// Portrait in the sleeve duotone, the story, and the career as credits.
+// Portrait in full colour, the story, and the career as credits.
 export default function About() {
   const ref = usePage((root) => {
     root.querySelectorAll('[data-lines]').forEach((el) => revealLines(el))

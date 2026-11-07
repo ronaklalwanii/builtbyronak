@@ -26,7 +26,7 @@ export default function Hero() {
     <section className="hero" ref={ref}>
       <Status className="status--hero" />
       <p className="hero__who" style={{ '--d': 0 }}>
-        {PERSONAL.name}
+        Freelance developer · Ahmedabad, India
       </p>
       <h1 className="hero__h" style={{ '--d': 60 }}>
         I build <em>React and Next.js apps</em> with AI for startups and SaaS teams. <span>Shopify stores too.</span>

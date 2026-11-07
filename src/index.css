@@ -1,7 +1,7 @@
 /* ============================================================
    Liner notes
    An editorial site laid out like a Blue Note sleeve: heavy
-   condensed type, warm off-black and cream, one blue, duotone
+   condensed type, warm off-black and cream, one blue accent, full-colour work
    covers that resolve to colour. The jazz is visual only.
    Section colours come from variables (--ground --text --muted
    --line --hl) set per section class, so text always follows.
@@ -166,18 +166,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .status--hero { display: none; }
 }
 
-/* ---------- sleeve, record, duotone ---------- */
+/* ---------- sleeve, record (covers show in full colour; the blue tint layer stays at 0) ---------- */
 .sleeve { --hov: 0; position: relative; display: block; width: 100%; transition: --hov 0.6s var(--ease); }
 .sleeve__art, .art { position: relative; display: block; overflow: hidden; background: var(--ink); isolation: isolate; }
 .sleeve__art { aspect-ratio: 1; z-index: 1; translate: calc(var(--hov) * -30%) 0; }
 .sleeve__art img, .art img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(1) contrast(1.45) brightness(1.1);
-  transition: filter 0.6s var(--ease);
+  filter: none;
+  transition: filter 0.6s var(--ease), scale 0.6s var(--ease);
 }
 .sleeve__art::after, .art::after {
   content: ''; position: absolute; inset: 0; background: var(--accent);
-  mix-blend-mode: multiply; transition: opacity 0.6s var(--ease); pointer-events: none;
+  mix-blend-mode: multiply; opacity: 0; transition: opacity 0.6s var(--ease); pointer-events: none;
 }
 /* Resolve to full colour: pointer, keyboard focus, touch (.is-lit) or the case sleeve. */
 a:hover .sleeve__art img, a:focus-visible .sleeve__art img, .is-lit .sleeve__art img,
@@ -250,7 +250,8 @@ a:hover > .sleeve, a:focus-visible > .sleeve, .album__cover:hover .sleeve, .albu
   font-family: var(--display); font-variation-settings: 'wdth' 62; font-weight: 700;
   font-size: clamp(2rem, 5.6vw, 6.8rem); line-height: 1.02; letter-spacing: -0.01em;
 }
-.statement mark { background: var(--accent); color: var(--cream); padding: 0 0.14em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.statement mark { background: var(--accent); color: var(--cream); padding: 0 0.02em 0 0.08em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.statement__k { white-space: nowrap; }
 .statement__note { grid-column: 1 / -1; max-width: 46ch; color: var(--muted); font-size: 16px; }
 @media (min-width: 900px) {
   .statement__text { grid-column: 1 / 12; }
@@ -389,8 +390,8 @@ a:hover > .sleeve, a:focus-visible > .sleeve, .album__cover:hover .sleeve, .albu
 @media (min-width: 1100px) { .steps { grid-template-columns: repeat(4, 1fr); } }
 
 /* ---------- contact ---------- */
-.contact { background: var(--accent); color: var(--cream); padding: clamp(72px, 12vw, 180px) var(--pad); }
-.contact__title { font-size: clamp(4.2rem, 17vw, 17rem); line-height: 0.84; max-width: 9ch; }
+.contact { background: var(--accent); color: var(--cream); padding: clamp(64px, 8vw, 120px) var(--pad); }
+.contact__title { font-size: clamp(3.4rem, 9vw, 9.5rem); line-height: 0.86; max-width: 14ch; }
 .contact__row { display: grid; gap: 32px; margin-top: clamp(36px, 5vw, 72px); }
 .contact__lead { font-size: clamp(18px, 1.6vw, 24px); line-height: 1.4; max-width: 28em; }
 .contact__actions { display: grid; gap: 22px; justify-items: start; }

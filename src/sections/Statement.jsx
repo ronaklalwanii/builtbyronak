@@ -8,8 +8,9 @@ export default function Statement() {
     <section className="statement" ref={ref}>
       <p className="statement__text" data-lines>
         Apps that hold up in production: an AI litigation platform that cut case review from about{' '}
-        <mark>40 hours to 6</mark>, a multi-tenant core for <mark>500+ retailers</mark>, and admin templates behind{' '}
-        <mark>2,000+ deployments</mark>.
+        <span className="statement__k"><mark>40 hours to 6</mark>,</span> a multi-tenant core for{' '}
+        <span className="statement__k"><mark>500+ retailers</mark>,</span> and admin templates behind{' '}
+        <span className="statement__k"><mark>2,000+ deployments</mark>.</span>
       </p>
       <p className="statement__note">
         Based in Ahmedabad, India (IST). Overlap with UK afternoons and US mornings. Working with startups and product

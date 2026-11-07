@@ -1,4 +1,4 @@
-// A record sleeve: the cover art (duotone until hovered, tapped or in focus)
+// A record sleeve: full-colour cover art
 // with the record peeking out from behind it. `.disc` is turned by
 // engine/spin.js; the sleeve slides and the record comes out in CSS.
 export default function Sleeve({ cover, alt = '', eager = false, sizes, disc = true, className = '' }) {

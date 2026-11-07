@@ -325,7 +325,7 @@ export const ALSO_SHIPPED = [
     name: "Laine",
     description:
       "AI marketing platform. Admin panel for enterprise campaign teams with multimodal AI capabilities and real-time analytics.",
-    metric: "Company wound down in 2026, screenshots unavailable",
+    metric: "Senior Frontend Engineer via York IE: built the campaign admin panel",
     tags: ["React", "TypeScript", "Redux", "AI/ML"],
   },
 ];
