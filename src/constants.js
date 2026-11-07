@@ -8,8 +8,8 @@ export const PERSONAL = {
   name: "Ronak Lalwani",
   title: "Freelance React & Next.js Developer",
   tagline: "Web apps with AI for startups. Shopify stores too.",
-  email: "ronak@builtbyronak.com",
-  calendly: "https://calendly.com/ronak-builtbyronak/30min", // leave empty to hide every "Book a call" button
+  email: "ronaklalwani49@gmail.com",
+  calendly: "https://calendly.com/ronak-lalwani/30min", // leave empty to hide every "Book a call" button
   domain: "builtbyronak.com",
   available: true, // toggles the green "Available" badge
   photo: "/images/ronak-640.webp", // leave empty to show initials
