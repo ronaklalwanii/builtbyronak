@@ -169,7 +169,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ---------- sleeve, record (covers show in full colour; the blue tint layer stays at 0) ---------- */
 .sleeve { --hov: 0; position: relative; display: block; width: 100%; transition: --hov 0.6s var(--ease); }
 .sleeve__art, .art { position: relative; display: block; overflow: hidden; background: var(--ink); isolation: isolate; }
-.sleeve__art { aspect-ratio: 1; z-index: 1; translate: calc(var(--hov) * -30%) 0; }
+.sleeve__art { aspect-ratio: 16 / 9; z-index: 1; translate: calc(var(--hov) * -30%) 0; }
 .sleeve__art img, .art img {
   width: 100%; height: 100%; object-fit: cover;
   filter: none;
@@ -217,18 +217,18 @@ a:hover > .sleeve, a:focus-visible > .sleeve, .album__cover:hover .sleeve, .albu
 .hero__sub { font-size: clamp(17px, 1.3vw, 20px); line-height: 1.5; }
 .hero__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: 26px; font-weight: 600; font-size: 15px; }
 .hero__cta .roll { --rp: 14px; }
-.hero__stack { position: relative; width: min(78vw, 380px); aspect-ratio: 1 / 1.1; margin-top: 56px; }
-.hero__sleeve { position: absolute; width: 80%; display: block; box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.5); }
+.hero__stack { position: relative; width: min(86vw, 460px); aspect-ratio: 4 / 3; margin-top: 56px; }
+.hero__sleeve { position: absolute; width: 88%; display: block; box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.5); }
 .hero__sleeve--0 { left: 0; bottom: 0; z-index: 3; }
-.hero__sleeve--1 { left: 10%; bottom: 12%; z-index: 2; }
-.hero__sleeve--2 { left: 20%; bottom: 24%; z-index: 1; }
+.hero__sleeve--1 { left: 6%; bottom: 16%; z-index: 2; }
+.hero__sleeve--2 { left: 12%; bottom: 32%; z-index: 1; }
 .hero__sleeve .sleeve { --out: 0.16; }
 
 @media (min-width: 900px) {
   .hero { min-height: calc(100svh - var(--bar)); align-content: center; }
   .hero__who, .hero__h, .hero__foot { grid-column: 1 / 9; }
   .hero__h { font-size: clamp(3rem, 7.4vw, 9.4rem); max-width: none; }
-  .hero__stack { grid-column: 9 / 13; grid-row: 1 / 4; width: 100%; align-self: end; margin-top: 0; }
+  .hero__stack { grid-column: 9 / 13; grid-row: 1 / 4; width: 100%; align-self: center; margin-top: 0; }
 }
 
 /* First paint is CSS only: the text is real and visible, the rest rises. */
@@ -324,7 +324,7 @@ a:hover > .sleeve, a:focus-visible > .sleeve, .album__cover:hover .sleeve, .albu
 }
 
 /* Side B: a compact shelf. Smaller type, smaller covers. */
-.shelf { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px var(--gut); }
+.shelf { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px var(--gut); align-items: start; }
 @media (min-width: 700px) { .shelf { grid-template-columns: repeat(4, 1fr); } }
 @media (min-width: 1100px) { .shelf { grid-template-columns: repeat(5, 1fr); gap: 36px var(--gut); } }
 .spine { display: grid; gap: 2px; padding-block: 4px; }

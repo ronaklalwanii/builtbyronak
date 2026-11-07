@@ -9,13 +9,13 @@ export default function Sleeve({ cover, alt = '', eager = false, sizes, disc = t
           <i />
         </span>
       )}
-      <span className="sleeve__art">
+      <span className="sleeve__art" style={{ aspectRatio: `${cover.w} / ${cover.h}` }}>
         <img
           src={cover.small}
           srcSet={`${cover.small} 800w, ${cover.src} ${cover.w}w`}
           sizes={sizes}
-          width="800"
-          height="450"
+          width={cover.w}
+          height={cover.h}
           alt={alt}
           loading={eager ? 'eager' : 'lazy'}
           fetchPriority={eager ? 'high' : undefined}
