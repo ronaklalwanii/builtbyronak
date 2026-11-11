@@ -1,4 +1,4 @@
-import { SHOPIFY_CASES, APP_CASES, ALSO } from '../data/work'
+import { SHOPIFY_CASES, STUDIO_CASES, APP_CASES, ALSO } from '../data/work'
 import { usePage, gsap, ScrollTrigger, revealLines, reduced, EASE } from '../engine/motion'
 import { A } from '../components/A'
 import Sleeve from '../components/Sleeve'
@@ -44,12 +44,14 @@ function Album({ c, i }) {
   )
 }
 
-function Spine({ c, i }) {
+const SHELF_SIZES = '(min-width: 1100px) 18vw, (min-width: 700px) 24vw, 46vw'
+
+function Spine({ c, sizes = SHELF_SIZES }) {
   return (
     <li>
       <A href={c.href} className="spine">
-        <Sleeve cover={c.cover} sizes="(min-width: 1100px) 18vw, (min-width: 700px) 24vw, 46vw" disc={false} />
-        <span className="spine__no">B{i + 1}</span>
+        <Sleeve cover={c.cover} sizes={sizes} disc={false} />
+        <span className="spine__no">{c.mark.no}</span>
         <span className="spine__name">{c.name}</span>
         <span className="spine__sector">{c.sector}</span>
       </A>
@@ -108,7 +110,8 @@ export default function WorkIndex() {
         <h2>Work</h2>
         <p data-lines>
           Side A: web apps and platforms for healthcare, legal and retail teams. Side B: fifteen Shopify stores, delivered
-          through my studio, The Hive Digital.
+          through my studio, The Hive Digital. Side C: websites and mobile apps from the studio, most of them concept
+          builds.
         </p>
       </header>
 
@@ -155,8 +158,22 @@ export default function WorkIndex() {
           Side B · Shopify stores
         </h3>
         <ol className="shelf">
-          {SHOPIFY_CASES.map((c, i) => (
-            <Spine key={c.slug} c={c} i={i} />
+          {SHOPIFY_CASES.map((c) => (
+            <Spine key={c.slug} c={c} />
+          ))}
+        </ol>
+      </div>
+
+      <div className="side side--c" id="studio">
+        <h3 className="side__label">
+          <span className="side__glyph" aria-hidden="true">
+            C
+          </span>
+          Side C · Sites and mobile apps
+        </h3>
+        <ol className="shelf shelf--wide">
+          {STUDIO_CASES.map((c) => (
+            <Spine key={c.slug} c={c} sizes="(min-width: 900px) 23vw, 46vw" />
           ))}
         </ol>
       </div>

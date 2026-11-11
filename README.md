@@ -17,7 +17,7 @@ pnpm preview
 `pnpm build` writes `dist/index.html`, `dist/work/<slug>/index.html` for every project, `dist/404.html` and `dist/sitemap.xml`, so any static host serves them without rewrites.
 
 ## Edit content
-Everything is in `src/constants.js` (personal info, services, work history, Shopify stores, projects). `src/data/work.js` derives slugs, sectors and weight-class labels from it; add a sector line there for any new project. Add screenshots under `public/images/projects/` and run `pnpm images` if you need new sizes.
+Everything is in `src/constants.js` (personal info, services, work history, Shopify stores, projects, studio builds for Side C). `src/data/work.js` derives slugs, sectors and weight-class labels from it; add a sector line there for any new project. Add screenshots under `public/images/projects/` and run `pnpm images` if you need new sizes.
 
 ## Deploy
 Static output in `dist/`. On Vercel: framework preset Vite, build command `pnpm build`, output `dist`.

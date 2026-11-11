@@ -60,7 +60,9 @@ export default function Case({ slug }) {
   const next = nextCase(slug)
   const n = c.images.length
   const isApp = c.kind === 'app'
-  const tracks = isApp ? c.tracks : c.images.map((im) => im.caption)
+  const isStore = c.kind === 'shopify'
+  // Side A and Side C carry written notes and a tracklist; a store's tracks are its screens.
+  const tracks = c.tracks || c.images.map((im) => im.caption)
 
   const shot = (im, i) => (
     <figure className={`shot${half(i, n) ? ' shot--half' : ''}`} key={im.src}>
@@ -94,9 +96,9 @@ export default function Case({ slug }) {
       </header>
 
       <div className="case__body">
-        {isApp ? (
+        {c.study ? (
           <div className="notes">
-            {NOTES.map(([key, label]) => (
+            {NOTES.filter(([key]) => c.study[key]).map(([key, label]) => (
               <section className="note" key={key}>
                 <h2>{label}</h2>
                 <p data-lines>{c.study[key]}</p>
@@ -128,7 +130,7 @@ export default function Case({ slug }) {
               <dd>{c.sector}</dd>
               <dt>{isApp ? 'Role' : 'Delivered by'}</dt>
               <dd>{c.role}</dd>
-              <dt>{isApp ? 'Stack' : 'Scope'}</dt>
+              <dt>{isStore ? 'Scope' : 'Stack'}</dt>
               <dd>{c.tags.join(', ')}</dd>
               {c.outcome && (
                 <>
@@ -141,7 +143,7 @@ export default function Case({ slug }) {
                   <dt>Live</dt>
                   <dd className="credits__links">
                     <a href={c.live} target="_blank" rel="noopener noreferrer">
-                      Visit the store <span aria-hidden="true">↗</span>
+                      Visit the {isStore ? 'store' : 'site'} <span aria-hidden="true">↗</span>
                     </a>
                   </dd>
                 </>
@@ -166,7 +168,7 @@ export default function Case({ slug }) {
       <div className="case__shots">{c.images.map((im, i) => shot(im, i))}</div>
 
       <nav className="case__next" aria-label="Next project">
-        <p className="label">Next on {isApp ? 'Side A' : 'Side B'}</p>
+        <p className="label">Next on Side {c.mark.no[0]}</p>
         <A href={next.href} className="case__nextcard">
           <span className="case__nextart">
             <Sleeve cover={next.cover} disc={false} sizes="(min-width: 900px) 30vw, 80vw" />

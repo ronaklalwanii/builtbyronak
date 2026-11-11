@@ -8,7 +8,7 @@
 
 ## Concept Card
 ```
-Idea:        The portfolio as a Blue Note record sleeve and its liner notes: Side A is the apps, Side B is the Shopify shelf.
+Idea:        The portfolio as a Blue Note record sleeve and its liner notes: Side A is the apps, Side B is the Shopify shelf, Side C is the studio's sites and mobile apps.
 Metaphor:    Reid Miles-era sleeves: heavy condensed type, duotone photography, one blue, cream and warm black.
 Signature:   Case open. The cover sleeve sits in place and the record slides out of it (the case hero), behind a page
              transition panel that rises like a sleeve being pulled over the page.
@@ -33,7 +33,7 @@ Section colours come from `--ground --text --muted --line --hl` (`.is-ink`, `.is
 - Fluid: hero clamp(2.7rem, 7.4vw, 9.4rem); work and case titles 7 to 13vw; statement clamp(2rem, 5.6vw, 6.8rem).
 
 ## Grid and rhythm
-12 columns, 16px gutter (24px from 1024), page padding clamp(16px, 4vw, 64px). Alignment rule: display type on column 1, secondary text on column 7. Sections each use a different layout family: poster hero, full-bleed type band (ink), alternating album spreads (cream), compact 5-up shelf (ink), ruled price-less list with sticky title, portrait + credits (sand), four-up numbered steps, full-bleed blue finale.
+12 columns, 16px gutter (24px from 1024), page padding clamp(16px, 4vw, 64px). Alignment rule: display type on column 1, secondary text on column 7. Sections each use a different layout family: poster hero, full-bleed type band (ink), alternating album spreads (cream), compact 5-up shelf (ink), 4-up shelf for Side C (cream), ruled price-less list with sticky title, portrait + credits (sand), four-up numbered steps, full-bleed blue finale.
 
 ## Shape
 Zero radius for sleeves and buttons; records are circles. Rules are 1px (3px for section tops).

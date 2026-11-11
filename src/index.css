@@ -354,6 +354,11 @@ a:hover > .sleeve, a:focus-visible > .sleeve, .album__cover:hover .sleeve, .albu
 .spine__name { font-weight: 600; font-size: 15px; line-height: 1.25; }
 .spine__sector { font-size: 14px; color: var(--muted); }
 
+/* Side C: the same shelf back on cream, four across so site covers read larger. */
+.side--c { padding-top: clamp(56px, 8vw, 120px); }
+.shelf--wide { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) { .shelf--wide { grid-template-columns: repeat(4, 1fr); gap: 44px var(--gut); } }
+
 /* ---------- services ---------- */
 .services {
   padding: clamp(72px, 10vw, 150px) var(--pad);
